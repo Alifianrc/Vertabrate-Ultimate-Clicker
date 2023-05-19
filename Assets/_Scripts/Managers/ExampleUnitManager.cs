@@ -7,11 +7,11 @@ using UnityEngine;
 public class ExampleUnitManager : StaticInstance<ExampleUnitManager> {
 
     public void SpawnHeroes() {
-        SpawnUnit(ExampleHeroType.Tarodev, new Vector3(1, 0, 0));
+        SpawnUnit(PreyType.Tarodev, new Vector3(1, 0, 0));
     }
 
-    void SpawnUnit(ExampleHeroType t, Vector3 pos) {
-        var tarodevScriptable = ResourceSystem.Instance.GetExampleHero(t);
+    void SpawnUnit(PreyType t, Vector3 pos) {
+        var tarodevScriptable = ResourceSystem.Instance.GetPrey(t);
 
         var spawned = Instantiate(tarodevScriptable.Prefab, pos, Quaternion.identity,transform);
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class HeroUnitBase : UnitBase {
+public abstract class PreyUnitBase : UnitBase {
     private bool _canMove;
 
     private void Awake() => ExampleGameManager.OnBeforeStateChanged += OnStateChanged;

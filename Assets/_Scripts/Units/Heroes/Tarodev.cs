@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tarodev : HeroUnitBase {
+public class Tarodev : PreyUnitBase {
     [SerializeField] private AudioClip _someSound;
 
     void Start() {

@@ -5,14 +5,17 @@ using UnityEngine;
 /// Keeping all relevant information about a unit on a scriptable means we can gather and show
 /// info on the menu screen, without instantiating the unit prefab.
 /// </summary>
-public abstract class ScriptableExampleUnitBase : ScriptableObject {
-    public Faction Faction;
-
+public abstract class ScriptableUnitBase : ScriptableObject
+{
+    [SerializeField] private ScriptableSpriteSheet moveAnimation;
+    [SerializeField] private ScriptableSpriteSheet idleAnimation;
+    [SerializeField] private ScriptableSpriteSheet hurtAnimation;
     [SerializeField] private Stats _stats;
+    [SerializeField, Min(1)] private float healthMultiplier;
     public Stats BaseStats => _stats;
 
     // Used in game
-    public HeroUnitBase Prefab;
+    public PreyUnitBase Prefab;
     
     // Used in menus
     public string Description;
@@ -26,12 +29,5 @@ public abstract class ScriptableExampleUnitBase : ScriptableObject {
 [Serializable]
 public struct Stats {
     public int Health;
-    public int AttackPower;
-    public int TravelDistance;
-}
-
-[Serializable]
-public enum Faction {
-    Heroes = 0,
-    Enemies = 1
+    public int EscapeTime;
 }
