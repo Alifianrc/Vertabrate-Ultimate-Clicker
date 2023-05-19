@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Fish swim
   m_EditorClassIdentifier: 
   sprites: []
-  frameRate: 0
+  frameRate: 24
   loop: 0
