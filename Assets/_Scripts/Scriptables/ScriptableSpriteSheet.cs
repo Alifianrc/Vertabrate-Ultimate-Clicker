@@ -30,8 +30,8 @@ public class ScriptableSpriteSheet : ScriptableObject
 
     public void Stop()
     {
-        _timer.Stop();
-        _timer.Dispose();
+        _timer?.Stop();
+        _timer?.Dispose();
         IsPlaying = false;
     }
 
