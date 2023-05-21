@@ -51,6 +51,7 @@ namespace NoSuchStudio.Common {
 
         protected void Log(object message)
         {
+            Debug.Log("test");
             UnityObjectLoggerExt.Log(this, message.ToString());
         }
 
