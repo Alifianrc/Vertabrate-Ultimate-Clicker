@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class MainMenu : MonoBehaviour
     private int m_subMenupPanelIndex = 0;
     public void GoToMenuPanel(int index)
     {
+        // Checking index value
         if (m_subMenupPanelIndex == index) return;
         if(index < 0 || index > 2)
         {
@@ -65,7 +67,10 @@ public class MainMenu : MonoBehaviour
             }
         }
         m_subMenupPanelIndex = index;
-        Debug.Log(-(SubMenuPanelWidth + SubMenuPanelMargin) * index);
-        MenuPanelGroup.transform.DOMoveX(-(SubMenuPanelWidth + SubMenuPanelMargin) * index, Slide_Duration);
+        
+        // Translate rectTransform to transform
+        var xRectPos = -(SubMenuPanelWidth + SubMenuPanelMargin) * index;
+        var transformPosition = transform.TransformPoint(new Vector3(xRectPos, 0, 0));
+        MenuPanelGroup.transform.DOMoveX(transformPosition.x, Slide_Duration);
     }
 }
