@@ -48,10 +48,9 @@ public class MainMenu : MonoBehaviourWithLogger
         m_mainMenuIsOpen = !m_mainMenuIsOpen;
 
         var targetY = m_mainMenuIsOpen
-            ? mainMenuPanel.position.y + (MainMenuPanelHeight * 2) - MainMenuButtonHeight
-            : mainMenuPanel.position.y - (MainMenuPanelHeight * 2) + MainMenuButtonHeight;
+            ? mainMenuPanel.position.y + MainMenuPanelHeight / 2 - MainMenuButtonHeight
+            : mainMenuPanel.position.y - MainMenuPanelHeight / 2 + MainMenuButtonHeight;
         
-        Log(m_mainMenuIsOpen + " " + targetY);
         mainMenuPanel.DOMoveY(targetY, duration);
     }
 
