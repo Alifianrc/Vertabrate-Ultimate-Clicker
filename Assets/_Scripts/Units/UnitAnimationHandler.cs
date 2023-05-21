@@ -9,11 +9,11 @@ internal class UnitAnimationHandler : ClassWithLogger
 {
     private List<AnimationSheet> m_animations;
 
-    [SerializeField] private ScriptableSpriteSheet m_selectedAnimation;
+    [SerializeField, ShowOnly] private ScriptableSpriteSheet m_selectedAnimation;
     
     private readonly SpriteRenderer m_spriteRenderer;
 
-    [SerializeField] private Sprite m_currentSprite;
+    [SerializeField, ShowOnly] private Sprite m_currentSprite;
 
     public UnitAnimationHandler(List<AnimationSheet> animations, SpriteRenderer renderer)
     {
