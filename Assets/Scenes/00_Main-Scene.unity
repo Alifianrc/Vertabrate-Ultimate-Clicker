@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 61646711}
   m_Layer: 5
-  m_Name: Menu Panel Groub
+  m_Name: Menu Panel Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,10 +157,10 @@ RectTransform:
   m_Father: {fileID: 1225457331}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 35.310547}
-  m_SizeDelta: {x: 0, y: -145.6673}
+  m_SizeDelta: {x: 520, y: 316.3327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &92499011
 GameObject:
@@ -1216,9 +1216,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -231}
+  m_SizeDelta: {x: 0, y: -462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225457332
 MonoBehaviour:
@@ -1464,7 +1464,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1905245468}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OpenCloseMainMenu
-        m_Mode: 1
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 1905245467}
   - component: {fileID: 1905245468}
   m_Layer: 5
-  m_Name: Main Menu Groub
+  m_Name: Main Menu Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenuPanel: {fileID: 1225457330}
   MainMenuButton: {fileID: 1876297212}
-  MenuPanelGroub: {fileID: 61646710}
+  MenuPanelGroup: {fileID: 61646710}
   StatsPanel: {fileID: 201758574}
   AchievementPanel: {fileID: 2082163768}
   DictionaryPanel: {fileID: 2133099833}

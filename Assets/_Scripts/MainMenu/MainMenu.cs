@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject MainMenuPanel;
     [SerializeField] private GameObject MainMenuButton;
 
-    [SerializeField] private GameObject MenuPanelGroub;
+    [SerializeField] private GameObject MenuPanelGroup;
     [SerializeField] private GameObject StatsPanel;
     [SerializeField] private GameObject AchievementPanel;
     [SerializeField] private GameObject DictionaryPanel;
@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
     public void OpenCloseMainMenu(float duration)
     {
         m_mainMenuIsOpen = !m_mainMenuIsOpen;
-
+        
         if(m_mainMenuIsOpen)
             MainMenuPanel.transform.DOMoveY(MainMenuPanel.transform.position.y + (MainMenuPanelHeight * 2) - MainMenuButtonHeight, duration);
         else
@@ -50,47 +50,22 @@ public class MainMenu : MonoBehaviour
     }
 
     // Slide Panel Menu -------------------------------------------------------------------------------
-    private bool m_panelMenuIsMoving;
-    private int m_panelMenuIndex = 0;
-    private const float PanelMenuOffset = 20.0f;
+    private float SubMenuPanelWidth => StatsPanel.GetComponent<RectTransform>().rect.width;
+    private const float SubMenuPanelMargin = 20.0f;
+    private int m_subMenupPanelIndex = 0;
     public void GoToMenuPanel(int index)
     {
-        if (m_panelMenuIndex == index) return;
-        m_panelMenuIsMoving = true;
-
+        if (m_subMenupPanelIndex == index) return;
         if(index < 0 || index > 2)
         {
             index = 0;
-            if(m_panelMenuIndex == index)
+            if(m_subMenupPanelIndex == index)
             {
-                m_panelMenuIsMoving = false;
                 return;
             }
         }
-
-        m_panelMenuIndex = index;
-        StartCoroutine(StartGoToMenuPanel(index, Slide_Duration));
+        m_subMenupPanelIndex = index;
+        Debug.Log(-(SubMenuPanelWidth + SubMenuPanelMargin) * index);
+        MenuPanelGroup.transform.DOMoveX(-(SubMenuPanelWidth + SubMenuPanelMargin) * index, Slide_Duration);
     }
-    private IEnumerator StartGoToMenuPanel(int index, float duration)
-    {
-        Vector2 pointA, pointB;
-
-        pointA = MenuPanelGroub.transform.position;
-        pointB = new Vector2((-Screen.width * index) + (Screen.width / 2) - (PanelMenuOffset * (index + 1)), MenuPanelGroub.transform.position.y);
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-            MenuPanelGroub.transform.position = Vector3.Lerp(pointA, pointB, t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure the object reaches the destination exactly
-        MenuPanelGroub.transform.position = pointB;
-        m_panelMenuIsMoving = false;
-    }
-
 }
