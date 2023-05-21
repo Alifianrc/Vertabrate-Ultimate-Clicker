@@ -1,11 +1,12 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using NoSuchStudio.Common;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviourWithLogger
 {
     // Object in this main menu group
     [SerializeField] private RectTransform MainMenuPanel;
@@ -21,7 +22,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        
         // Always close main menu first
         CloseMainMenu(0);
         // Got to stats panel first
@@ -50,6 +50,7 @@ public class MainMenu : MonoBehaviour
         if (m_mainMenuIsOpen)
         {
             targetY = MainMenuPanel.position.y + (MainMenuPanelHeight * 2) - MainMenuButtonHeight;
+            Log(targetY);
             MainMenuPanel.DOMoveY(targetY, duration);
         }
         else

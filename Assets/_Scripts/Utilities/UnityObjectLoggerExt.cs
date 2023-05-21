@@ -48,21 +48,22 @@ namespace NoSuchStudio.Common {
     /// </remarks>
     public static class UnityObjectLoggerExt {
         
-        public static readonly Dictionary<Type, (Logger, LoggerConfig)> loggers = new Dictionary<Type, (Logger, LoggerConfig)>();
+        public static readonly Dictionary<Type, (Logger, LoggerConfig)> loggers = new();
         
         private static void Log(UnityEngine.Object unityObj, LogType logType, string format, params object[] args) {
             (Logger logger, LoggerConfig lc) = GetLoggerByType(unityObj.GetType());
-            logger.LogFormat(logType, unityObj, string.Format("{0}{1}{2}{3}{4}",
-                lc.logThreadId ? "[" + Thread.CurrentThread.ManagedThreadId.ToString() + "] " : "",
-                lc.logGameTime ? "[" + Time.time + "]" : "",
-                lc.logClassName ? "(" + lc.className + ")" : "",
-                lc.logGameObjectName ? "(" + unityObj.name + ") " : "",
-                format),
-                args);
+            logger.LogFormat(logType, unityObj,
+                $"{(lc.logThreadId ? "[" + Thread.CurrentThread.ManagedThreadId.ToString() + "] " : "")}" +
+                $"{(lc.logGameTime ? "[" + Time.time + "]" : "")}" +
+                $"{(lc.logClassName ? "(" + lc.className + ")" : "")}" +
+                $"{(lc.logGameObjectName ? "(" + unityObj.name + ") " : "")}" +
+                $"{format}", args);
         }
-        public static void LogLog(this MonoBehaviour mono, string format, params object[] args) {
+        
+        public static void Log(this MonoBehaviour mono, string format, params object[] args) {
             Log(mono, LogType.Log, format, args);
         }
+        
         public static void LogWarn(this MonoBehaviour mono, string format, params object[] args) {
             Log(mono, LogType.Warning, format, args);
         }
@@ -73,7 +74,7 @@ namespace NoSuchStudio.Common {
       
         private static void AddType(Type type) {
             if (!loggers.ContainsKey(type)) {
-                LoggerConfig lc = new LoggerConfig(string.Format("{0}", type.Name));
+                LoggerConfig lc = new LoggerConfig($"{type.Name}");
                 loggers.Add(type, (new Logger(Debug.unityLogger.logHandler), lc));
             }
         }
@@ -89,16 +90,15 @@ namespace NoSuchStudio.Common {
 
         private static void LogStatic<T>(LogType logType, string format, params object[] args) {
             (Logger logger, LoggerConfig lc) = GetLoggerByType<T>();
-            logger.LogFormat(logType, string.Format("{0}{1}{2}{3}{4}",
-                lc.logThreadId ? "[" + Thread.CurrentThread.ManagedThreadId.ToString() + "] " : "",
-                lc.logGameTime ? "[" + string.Format("{0:0.00}", Time.time) + "]" : "",
-                lc.logClassName ? "(" + lc.className + ")" : "",
-                lc.logGameObjectName ? "(<static>) " : "",
-                format),
-                args);
+            logger.LogFormat(logType,
+                $"{(lc.logThreadId ? "[" + Thread.CurrentThread.ManagedThreadId + "] " : "")}" +
+                $"{(lc.logGameTime ? "[" + $"{Time.time:0.00}" + "]" : "")}" +
+                $"{(lc.logClassName ? "(" + lc.className + ")" : "")}" +
+                $"{(lc.logGameObjectName ? "(<static>) " : "")}" +
+                $"{format}", args);
         }
 
-        public static void LogLog<T>(string format, params object[] args) {
+        public static void Log<T>(string format, params object[] args) {
             LogStatic<T>(LogType.Log, format, args);
         }
 
