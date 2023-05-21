@@ -53,22 +53,22 @@ namespace NoSuchStudio.Common {
         private static void Log(UnityEngine.Object unityObj, LogType logType, string format, params object[] args) {
             (Logger logger, LoggerConfig lc) = GetLoggerByType(unityObj.GetType());
             logger.LogFormat(logType, unityObj,
-                $"{(lc.logThreadId ? "[" + Thread.CurrentThread.ManagedThreadId.ToString() + "] " : "")}" +
+                $"{(lc.logThreadId ? "[" + Thread.CurrentThread.ManagedThreadId + "] " : "")}" +
                 $"{(lc.logGameTime ? "[" + Time.time + "]" : "")}" +
                 $"{(lc.logClassName ? "(" + lc.className + ")" : "")}" +
                 $"{(lc.logGameObjectName ? "(" + unityObj.name + ") " : "")}" +
                 $"{format}", args);
         }
         
-        public static void Log(this MonoBehaviour mono, string format, params object[] args) {
+        public static void Log(this UnityEngine.Object mono, string format, params object[] args) {
             Log(mono, LogType.Log, format, args);
         }
         
-        public static void LogWarn(this MonoBehaviour mono, string format, params object[] args) {
+        public static void LogWarn(this UnityEngine.Object mono, string format, params object[] args) {
             Log(mono, LogType.Warning, format, args);
         }
 
-        public static void LogError(this MonoBehaviour mono, string format, params object[] args) {
+        public static void LogError(this UnityEngine.Object mono, string format, params object[] args) {
             Log(mono, LogType.Error, format, args);
         }
       

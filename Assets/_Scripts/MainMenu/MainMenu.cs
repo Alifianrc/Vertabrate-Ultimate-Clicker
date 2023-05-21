@@ -1,10 +1,6 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using NoSuchStudio.Common;
 using UnityEngine;
-using UnityEngine.Experimental.AI;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviourWithLogger
@@ -19,7 +15,7 @@ public class MainMenu : MonoBehaviourWithLogger
     [SerializeField] private RectTransform dictionaryPanel;
 
     // Public Variable
-    public const float Slide_Duration = 0.5f;
+    public const float Slide_Duration = 0.2f;
 
     private void Start()
     {

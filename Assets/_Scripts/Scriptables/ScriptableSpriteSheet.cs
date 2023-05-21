@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+using NoSuchStudio.Common;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ using Random = UnityEngine.Random;
 /// The animation can be played and stopped. Use CurrentSprite to get the current frame
 /// </summary>
 [CreateAssetMenu(fileName = "New SpriteSheet")]
-public class ScriptableSpriteSheet : ScriptableObject
+public class ScriptableSpriteSheet : ScriptableObjectWithLogger
 {
     [SerializeField] private List<Sprite> sprites = new();
     [SerializeField, Range(0, 60)] private int frameRate = 24;
@@ -24,6 +25,7 @@ public class ScriptableSpriteSheet : ScriptableObject
 
     public void Play()
     {
+        Log("Play");
         IsPlaying = true;
         _timer = Helpers.RunEvery(NextFrame, 1000 / frameRate);
     }
@@ -40,6 +42,7 @@ public class ScriptableSpriteSheet : ScriptableObject
         if (spriteIndex < 0 || spriteIndex >= sprites.Count)
             throw new IndexOutOfRangeException("spriteIndex doesn't exist");
         CurrentSpriteIndex = spriteIndex;
+        Log($"Seek to {CurrentSpriteIndex}");
     }
 
     private void NextFrame()

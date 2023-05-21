@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace NoSuchStudio.Common {
     /// <summary>
-    /// Base class for MonoBehaviours that want to use the extended logging capabilities of <see cref="UnityObjectLoggerExt"/>.
+    /// Base class for ScriptableObjects that want to use the extended logging capabilities of <see cref="UnityObjectLoggerExt"/>.
     /// By subclassing, you can use the methods without qualifying with 'this.', saving yourself from typing 5 characters!
     /// <code>LogWarn("My warning: {0}", warningMsg);</code>
     /// instead of
     /// <code>this.LogWarn("My warning: {0}", warningMsg);</code>
     /// </summary>
-    public abstract class MonoBehaviourWithLogger : MonoBehaviour {
+    public abstract class ScriptableObjectWithLogger : ScriptableObject {
         
         public Logger logger {
             get {
