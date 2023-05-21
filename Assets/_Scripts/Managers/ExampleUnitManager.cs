@@ -11,14 +11,14 @@ public class ExampleUnitManager : StaticInstance<ExampleUnitManager> {
     }
 
     void SpawnUnit(PreyType t, Vector3 pos) {
-        var tarodevScriptable = ResourceSystem.Instance.GetPrey(t);
+        var data = ResourceSystem.Instance.GetPrey(t);
 
-        var spawned = Instantiate(tarodevScriptable.Prefab, pos, Quaternion.identity,transform);
+        var spawned = Instantiate(data.Prefab, pos, Quaternion.identity,transform);
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
-        var stats = tarodevScriptable.BaseStats;
+        var stats = data.BaseStats;
         stats.Health += 20;
 
-        spawned.SetStats(stats);
+        spawned.Init(stats, data.Animations);
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Timers;
 using NoSuchStudio.Common;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -22,11 +23,13 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
     public Sprite CurrentSprite => sprites[CurrentSpriteIndex];
     public Sprite RandomSprite => sprites[Random.Range(0, sprites.Count)];
     public bool IsPlaying { get; private set; }
+    public event Action<Sprite> OnSpriteIndexChanged;
 
-    public void Play()
+    public void Play(bool fromBeginning = false)
     {
         Log("Play");
         IsPlaying = true;
+        if(fromBeginning) Seek(0);
         _timer = Helpers.RunEvery(NextFrame, 1000 / frameRate);
     }
 
@@ -41,7 +44,9 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
     {
         if (spriteIndex < 0 || spriteIndex >= sprites.Count)
             throw new IndexOutOfRangeException("spriteIndex doesn't exist");
+        if(CurrentSpriteIndex == spriteIndex) return;
         CurrentSpriteIndex = spriteIndex;
+        OnSpriteIndexChanged?.Invoke(CurrentSprite);
         Log($"Seek to {CurrentSpriteIndex}");
     }
 
@@ -63,4 +68,17 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
     {
         Stop();
     }
+}
+
+[Serializable]
+public enum AnimationType
+{
+    Invalid, Idle, Move, Hurt, Death
+}
+
+[Serializable]
+public struct AnimationSheet
+{
+    public AnimationType Type;
+    public ScriptableSpriteSheet SpriteSheet;
 }

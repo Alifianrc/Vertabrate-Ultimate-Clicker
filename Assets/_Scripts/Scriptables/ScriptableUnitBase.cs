@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Keeping all relevant information about a unit on a scriptable means we can gather and show
@@ -7,12 +9,11 @@ using UnityEngine;
 /// </summary>
 public abstract class ScriptableUnitBase : ScriptableObject
 {
-    [SerializeField] private ScriptableSpriteSheet moveAnimation;
-    [SerializeField] private ScriptableSpriteSheet idleAnimation;
-    [SerializeField] private ScriptableSpriteSheet hurtAnimation;
-    [SerializeField] private Stats _stats;
-    [SerializeField, Min(1)] private float healthMultiplier;
-    public Stats BaseStats => _stats;
+    [SerializeField] private List<AnimationSheet> m_animations;
+    [SerializeField] private Stats m_stats;
+    [SerializeField, Min(1)] private float m_healthMultiplier;
+    public Stats BaseStats => m_stats;
+    public List<AnimationSheet> Animations => m_animations;
 
     // Used in game
     public PreyUnitBase Prefab;
