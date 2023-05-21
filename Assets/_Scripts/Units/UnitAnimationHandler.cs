@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Timers;
+using NoSuchStudio.Common;
 using UnityEngine;
 
-internal class UnitAnimationHandler
+[Serializable]
+internal class UnitAnimationHandler : ClassWithLogger
 {
-    private readonly List<AnimationSheet> m_animations;
+    private List<AnimationSheet> m_animations;
 
-    private ScriptableSpriteSheet m_selectedAnimation;
-        
+    [SerializeField] private ScriptableSpriteSheet m_selectedAnimation;
+    
     private readonly SpriteRenderer m_spriteRenderer;
+
+    [SerializeField] private Sprite m_currentSprite;
 
     public UnitAnimationHandler(List<AnimationSheet> animations, SpriteRenderer renderer)
     {
@@ -23,11 +28,20 @@ internal class UnitAnimationHandler
         anim.Play(fromBeginning);
     }
 
-    public void Stop() => m_selectedAnimation.Stop();
+    /// <summary>
+    /// Stops the currently playing animation
+    /// </summary>
+    public void Stop()
+    {
+        if(m_selectedAnimation == null) return;
+        m_selectedAnimation.Stop();
+    }
 
     private void ChangeSprite(Sprite newSprite)
     {
+        Debug.Log("Change sprite to " + newSprite);
         m_spriteRenderer.sprite = newSprite;
+        m_currentSprite = newSprite;
     }
 
     private void SelectAnimation(ScriptableSpriteSheet animation)

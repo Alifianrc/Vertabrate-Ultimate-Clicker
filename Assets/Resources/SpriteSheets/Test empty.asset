@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fb288bc053671b44833993e1be01099, type: 3}
-  m_Name: Fish swim
+  m_Name: Test empty
   m_EditorClassIdentifier: 
   sprites: []
   frameRate: 24
-  loop: 0
+  loop: 1

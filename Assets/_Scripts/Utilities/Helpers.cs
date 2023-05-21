@@ -31,6 +31,7 @@ public static class Helpers
         tmr.AutoReset = true;
         tmr.Interval = intervalMillisecond;
         tmr.Start();
+        Debug.Log("RunEvery");
 
         return tmr;
     }

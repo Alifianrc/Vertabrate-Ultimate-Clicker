@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using NoSuchStudio.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -19,7 +20,7 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
     [SerializeField] private bool loop;
 
     public int CurrentSpriteIndex { get; private set; }
-    private Timer _timer;
+    //private Timer _timer;
     public Sprite CurrentSprite => sprites[CurrentSpriteIndex];
     public Sprite RandomSprite => sprites[Random.Range(0, sprites.Count)];
     public bool IsPlaying { get; private set; }
@@ -27,44 +28,56 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
 
     public void Play(bool fromBeginning = false)
     {
-        Log("Play");
+        Debug.Log("Play " + name);
         IsPlaying = true;
         if(fromBeginning) Seek(0);
-        _timer = Helpers.RunEvery(NextFrame, 1000 / frameRate);
+        MonoHelper.Instance.InvokeRepeat(NextFrame, 1f / frameRate);
     }
 
     public void Stop()
     {
-        _timer?.Stop();
-        _timer?.Dispose();
+        //_timer?.Stop();
+        //_timer?.Dispose();
+        Debug.Log("Stop " + name);
+        MonoHelper.Instance.StopAll();
         IsPlaying = false;
     }
 
     public void Seek(int spriteIndex)
     {
-        if (spriteIndex < 0 || spriteIndex >= sprites.Count)
+        //Debug.Log("start seek" + spriteIndex + IsIndexInValid(spriteIndex));
+        if (IsIndexInValid(spriteIndex))
+        {
             throw new IndexOutOfRangeException("spriteIndex doesn't exist");
-        if(CurrentSpriteIndex == spriteIndex) return;
-        CurrentSpriteIndex = spriteIndex;
-        OnSpriteIndexChanged?.Invoke(CurrentSprite);
-        Log($"Seek to {CurrentSpriteIndex}");
+            // Debug.LogError("spriteIndex doesn't exist");
+            // return;
+        }
+        else
+        {
+            if (CurrentSpriteIndex == spriteIndex) return;
+            CurrentSpriteIndex = spriteIndex;
+            //Debug.Log($"Seek to {CurrentSpriteIndex}");
+        }
+    }
+
+    private bool IsIndexInValid(int spriteIndex)
+    {
+        return spriteIndex < 0 || spriteIndex >= sprites.Count;
     }
 
     private void NextFrame()
     {
+        var prev = CurrentSpriteIndex;
         CurrentSpriteIndex++;
-        if (CurrentSpriteIndex == sprites.Count)
+        if (IsIndexInValid(CurrentSpriteIndex))
         {
             Seek(loop ? 0 : sprites.Count - 1);
         }
+        
+        if(prev != CurrentSpriteIndex) OnSpriteIndexChanged?.Invoke(CurrentSprite);
     }
 
     private void OnDestroy()
-    {
-        Stop();
-    }
-
-    private void OnDisable()
     {
         Stop();
     }
@@ -81,4 +94,14 @@ public struct AnimationSheet
 {
     public AnimationType Type;
     public ScriptableSpriteSheet SpriteSheet;
+
+    public static bool operator ==(AnimationSheet a, AnimationSheet b)
+    {
+        return a.Type == b.Type && a.SpriteSheet == b.SpriteSheet;
+    }
+
+    public static bool operator !=(AnimationSheet a, AnimationSheet b)
+    {
+        return !(a == b);
+    }
 }

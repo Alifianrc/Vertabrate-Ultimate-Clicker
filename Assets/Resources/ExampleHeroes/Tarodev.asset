@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5c23fd834c21743bf7677711b06d5e, type: 3}
   m_Name: Tarodev
   m_EditorClassIdentifier: 
-  Faction: 0
-  _stats:
-    Health: 55
-    AttackPower: 69
-    TravelDistance: 3
+  m_animations:
+  - Type: 1
+    SpriteSheet: {fileID: 11400000, guid: 0ed083f8bb0d20744b268dd8e18e97a2, type: 2}
+  - Type: 2
+    SpriteSheet: {fileID: 11400000, guid: dc0293ecbc04dee48aef786147610495, type: 2}
+  m_stats:
+    Health: 0
+    EscapeTime: 0
+  m_healthMultiplier: 1
   Prefab: {fileID: 2359815085648871730, guid: f9265962c9689014fbd7a3f8d40f0aa8, type: 3}
   Description: Subscribe to him immediately
   MenuSprite: {fileID: 21300000, guid: c108ff40cd842334bbef5f1be113e603, type: 3}
-  HeroType: 0
+  Type: 0

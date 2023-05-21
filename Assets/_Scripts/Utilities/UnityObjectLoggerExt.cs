@@ -50,6 +50,7 @@ namespace NoSuchStudio.Common {
         
         public static readonly Dictionary<Type, (Logger, LoggerConfig)> loggers = new();
         
+        [HideInCallstack]
         private static void Log(UnityEngine.Object unityObj, LogType logType, string format, params object[] args) {
             (Logger logger, LoggerConfig lc) = GetLoggerByType(unityObj.GetType());
             logger.LogFormat(logType, unityObj,
@@ -60,18 +61,22 @@ namespace NoSuchStudio.Common {
                 $"{format}", args);
         }
         
+        [HideInCallstack]
         public static void Log(this UnityEngine.Object mono, string format, params object[] args) {
             Log(mono, LogType.Log, format, args);
         }
         
+        [HideInCallstack]
         public static void LogWarn(this UnityEngine.Object mono, string format, params object[] args) {
             Log(mono, LogType.Warning, format, args);
         }
 
+        [HideInCallstack]
         public static void LogError(this UnityEngine.Object mono, string format, params object[] args) {
             Log(mono, LogType.Error, format, args);
         }
       
+        [HideInCallstack]
         private static void AddType(Type type) {
             if (!loggers.ContainsKey(type)) {
                 LoggerConfig lc = new LoggerConfig($"{type.Name}");
@@ -88,6 +93,7 @@ namespace NoSuchStudio.Common {
             return GetLoggerByType(typeof(T));
         }
 
+        [HideInCallstack]
         private static void LogStatic<T>(LogType logType, string format, params object[] args) {
             (Logger logger, LoggerConfig lc) = GetLoggerByType<T>();
             logger.LogFormat(logType,
@@ -98,14 +104,17 @@ namespace NoSuchStudio.Common {
                 $"{format}", args);
         }
 
+        [HideInCallstack]
         public static void Log<T>(string format, params object[] args) {
             LogStatic<T>(LogType.Log, format, args);
         }
 
+        [HideInCallstack]
         public static void LogWarn<T>(string format, params object[] args) {
             LogStatic<T>(LogType.Warning, format, args);
         }
 
+        [HideInCallstack]
         public static void LogError<T>(string format, params object[] args) {
             LogStatic<T>(LogType.Error, format, args);
         }

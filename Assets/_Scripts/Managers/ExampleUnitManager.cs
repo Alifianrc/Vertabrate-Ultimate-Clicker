@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -20,5 +21,20 @@ public class ExampleUnitManager : StaticInstance<ExampleUnitManager> {
         stats.Health += 20;
 
         spawned.Init(stats, data.Animations);
+
+        StartCoroutine(PlayAnimationTest(spawned));
+    }
+
+    private static IEnumerator PlayAnimationTest(UnitBase spawned)
+    {
+        spawned.Play(AnimationType.Idle);
+        yield return new WaitForSeconds(2);
+        spawned.Stop();
+        yield return new WaitForSeconds(2);
+        spawned.Play(AnimationType.Idle);
+        yield return new WaitForSeconds(2);
+        spawned.Play(AnimationType.Move); //change animation test
+        yield return new WaitForSeconds(2);
+        spawned.Play(AnimationType.Death); //empty test
     }
 }

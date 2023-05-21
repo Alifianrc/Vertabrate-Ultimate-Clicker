@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,7 +12,7 @@ public abstract class ScriptableUnitBase : ScriptableObject
 {
     [SerializeField] private List<AnimationSheet> m_animations;
     [SerializeField] private Stats m_stats;
-    [SerializeField, Min(1)] private float m_healthMultiplier;
+    [SerializeField, Min(1)] private float m_healthMultiplier = 1;
     public Stats BaseStats => m_stats;
     public List<AnimationSheet> Animations => m_animations;
 
@@ -21,6 +22,17 @@ public abstract class ScriptableUnitBase : ScriptableObject
     // Used in menus
     public string Description;
     public Sprite MenuSprite;
+
+    private void OnValidate()
+    {
+        foreach (var sheet in m_animations)
+        {
+            if (m_animations.Any(other => sheet != other && sheet.Type == other.Type))
+            {
+                throw new Exception($"Duplicates found! File:{name}. Duplicates:{sheet.Type}");
+            }
+        }
+    }
 }
 
 /// <summary>

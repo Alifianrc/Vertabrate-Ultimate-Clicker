@@ -11,13 +11,15 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class UnitBase : MonoBehaviour {
     public Stats Stats { get; private set; }
+    public bool IsInitialized { get; private set; }
 
-    private UnitAnimationHandler m_animationHandler;
+    [SerializeField] private UnitAnimationHandler m_animationHandler;
 
     public void Init(Stats stats, List<AnimationSheet> animations)
     {
         m_animationHandler = new UnitAnimationHandler(animations, GetComponent<SpriteRenderer>());
         Stats = stats;
+        IsInitialized = true;
     }
 
     public void Play(AnimationType type) => m_animationHandler.Play(type);
