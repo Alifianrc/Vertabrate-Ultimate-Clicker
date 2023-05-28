@@ -3,17 +3,17 @@ using UnityEngine;
 public abstract class PreyUnitBase : UnitBase {
     private bool _canMove;
 
-    private void Awake() => ExampleGameManager.OnBeforeStateChanged += OnStateChanged;
+    private void Awake() => GameManager.OnBeforeStateChanged += OnStateChanged;
 
-    private void OnDestroy() => ExampleGameManager.OnBeforeStateChanged -= OnStateChanged;
+    private void OnDestroy() => GameManager.OnBeforeStateChanged -= OnStateChanged;
 
     private void OnStateChanged(GameState newState) {
-        if (newState == GameState.HeroTurn) _canMove = true;
+        if (newState == GameState.FightPrey) _canMove = true;
     }
 
     private void OnMouseDown() {
         // Only allow interaction when it's the hero turn
-        if (ExampleGameManager.Instance.State != GameState.HeroTurn) return;
+        if (GameManager.Instance.State != GameState.FightPrey) return;
 
         // Don't move if we've already moved
         if (!_canMove) return;

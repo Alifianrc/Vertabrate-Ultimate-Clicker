@@ -39,7 +39,7 @@ internal class UnitAnimationHandler : ClassWithLogger
 
     private void ChangeSprite(Sprite newSprite)
     {
-        Debug.Log("Change sprite to " + newSprite);
+        //Log("Change sprite to " + newSprite);
         m_spriteRenderer.sprite = newSprite;
         m_currentSprite = newSprite;
     }

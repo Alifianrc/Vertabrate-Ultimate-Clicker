@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
-public class JSONReader : MonoBehaviour
+public class JSONReader : Singleton<JSONReader>
 {
     // JSON file
     [SerializeField] private TextAsset JSON_VERTEBRATE_DATA;
@@ -25,20 +24,6 @@ public class JSONReader : MonoBehaviour
 
     // Variable of that class
     [SerializeField] public VertebrateDataList Vertebrate_Data_List = new VertebrateDataList();
-
-    // Singleton
-    public static JSONReader Instance;
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     // Event
     public static Action OnJDataLoaded;

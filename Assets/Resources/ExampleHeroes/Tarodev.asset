@@ -17,6 +17,8 @@ MonoBehaviour:
     SpriteSheet: {fileID: 11400000, guid: 0ed083f8bb0d20744b268dd8e18e97a2, type: 2}
   - Type: 2
     SpriteSheet: {fileID: 11400000, guid: dc0293ecbc04dee48aef786147610495, type: 2}
+  - Type: 4
+    SpriteSheet: {fileID: 11400000, guid: d4d7256f54cfd2745b8bffd2d73ca843, type: 2}
   m_stats:
     Health: 0
     EscapeTime: 0

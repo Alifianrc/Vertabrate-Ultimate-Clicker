@@ -24,7 +24,7 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
 
     public void Play(bool fromBeginning = false)
     {
-        Debug.Log("Play " + name);
+        Log("Play " + name);
         IsPlaying = true;
         if(fromBeginning) Seek(0);
         MonoHelper.Instance.InvokeRepeat(NextFrame, 1f / frameRate);
@@ -32,28 +32,24 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
 
     public void Stop()
     {
-        //_timer?.Stop();
-        //_timer?.Dispose();
-        Debug.Log("Stop " + name);
+        Log("Stop " + name);
         MonoHelper.Instance.StopAll();
         IsPlaying = false;
     }
 
     public void Seek(int spriteIndex)
     {
-        //Debug.Log("start seek" + spriteIndex + IsIndexInValid(spriteIndex));
+        //Log("start seek" + spriteIndex + IsIndexInValid(spriteIndex));
         if (IsIndexInValid(spriteIndex))
         {
-            throw new IndexOutOfRangeException("spriteIndex doesn't exist");
-            // Debug.LogError("spriteIndex doesn't exist");
+            throw new IndexOutOfRangeException("spriteIndex doesn't exist! filename:" + name);
+            // LogError("spriteIndex doesn't exist");
             // return;
         }
-        else
-        {
-            if (CurrentSpriteIndex == spriteIndex) return;
-            CurrentSpriteIndex = spriteIndex;
-            //Debug.Log($"Seek to {CurrentSpriteIndex}");
-        }
+
+        if (CurrentSpriteIndex == spriteIndex) return;
+        CurrentSpriteIndex = spriteIndex;
+        //Log($"Seek to {CurrentSpriteIndex}");
     }
 
     private bool IsIndexInValid(int spriteIndex)
@@ -86,7 +82,7 @@ public enum AnimationType
 }
 
 [Serializable]
-public struct AnimationSheet
+public struct AnimationSheet : IEquatable<AnimationSheet>
 {
     public AnimationType Type;
     public ScriptableSpriteSheet SpriteSheet;
@@ -99,5 +95,20 @@ public struct AnimationSheet
     public static bool operator !=(AnimationSheet a, AnimationSheet b)
     {
         return !(a == b);
+    }
+
+    public bool Equals(AnimationSheet other)
+    {
+        return Type == other.Type && Equals(SpriteSheet, other.SpriteSheet);
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is AnimationSheet other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine((int)Type, SpriteSheet);
     }
 }

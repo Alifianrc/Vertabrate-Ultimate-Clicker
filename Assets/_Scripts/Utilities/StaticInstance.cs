@@ -1,3 +1,4 @@
+using NoSuchStudio.Common;
 using UnityEngine;
 
 /// <summary>
@@ -5,7 +6,7 @@ using UnityEngine;
 /// instances, it overrides the current instance. This is handy for resetting the state
 /// and saves you doing it manually
 /// </summary>
-public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour {
+public abstract class StaticInstance<T> : MonoBehaviourWithLogger where T : MonoBehaviour {
     public static T Instance { get; private set; }
     protected virtual void Awake() => Instance = this as T;
 

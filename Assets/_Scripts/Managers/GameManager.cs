@@ -7,33 +7,33 @@ using UnityEngine.Serialization;
 /// Nice, easy to understand enum-based game manager. For larger and more complex games, look into
 /// state machines. But this will serve just fine for most games.
 /// </summary>
-public class ExampleGameManager : StaticInstance<ExampleGameManager> {
+public class GameManager : StaticInstance<GameManager> {
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
 
     public GameState State { get; private set; }
 
     // Kick the game off with the first state
-    void Start() => ChangeState(GameState.Starting);
+    private void Start() => ChangeState(GameState.Starting);
 
     public void ChangeState(GameState newState) {
         OnBeforeStateChanged?.Invoke(newState);
+        
+        Log($"New state: {newState}");
 
         State = newState;
         switch (newState) {
             case GameState.Starting:
                 HandleStarting();
                 break;
-            case GameState.SpawningHeroes:
-                HandleSpawningHeroes();
+            case GameState.SpawnPrey:
+                HandleSpawnPrey();
                 break;
-            case GameState.SpawningEnemies:
-                HandleSpawningEnemies();
+            case GameState.PlayerFreeRoam:
+                HandlePlayerFreeRoam();
                 break;
-            case GameState.HeroTurn:
-                HandleHeroTurn();
-                break;
-            case GameState.EnemyTurn:
+            case GameState.FightPrey:
+                HandleFightPrey();
                 break;
             case GameState.Win:
                 break;
@@ -44,8 +44,6 @@ public class ExampleGameManager : StaticInstance<ExampleGameManager> {
         }
 
         OnAfterStateChanged?.Invoke(newState);
-        
-        Debug.Log($"New state: {newState}");
     }
 
     private void HandleStarting() {
@@ -53,23 +51,23 @@ public class ExampleGameManager : StaticInstance<ExampleGameManager> {
 
         // Eventually call ChangeState again with your next state
         
-        ChangeState(GameState.SpawningHeroes);
+        ChangeState(GameState.SpawnPrey);
     }
 
-    private void HandleSpawningHeroes() {
-        ExampleUnitManager.Instance.SpawnHeroes();
+    private void HandleSpawnPrey() {
+        PreyManager.Instance.PopulateArea();
         
-        ChangeState(GameState.SpawningEnemies);
+        ChangeState(GameState.PlayerFreeRoam);
     }
 
-    private void HandleSpawningEnemies() {
+    private void HandlePlayerFreeRoam() {
         
         // Spawn enemies
         
-        ChangeState(GameState.HeroTurn);
+        ChangeState(GameState.FightPrey);
     }
 
-    private void HandleHeroTurn() {
+    private void HandleFightPrey() {
         // If you're making a turn based game, this could show the turn menu, highlight available units etc
         
         // Keep track of how many units need to make a move, once they've all finished, change the state. This could
@@ -83,11 +81,10 @@ public class ExampleGameManager : StaticInstance<ExampleGameManager> {
 /// </summary>
 [Serializable]
 public enum GameState {
-    Starting = 0,
-    SpawningHeroes = 1,
-    SpawningEnemies = 2,
-    HeroTurn = 3,
-    EnemyTurn = 4,
-    Win = 5,
-    Lose = 6,
+    Starting,
+    SpawnPrey,
+    PlayerFreeRoam,
+    FightPrey,
+    Win,
+    Lose,
 }
