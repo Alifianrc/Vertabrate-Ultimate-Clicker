@@ -12,5 +12,10 @@ public class DictionaryPanel : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI DescText;
 
-
+    public void SetData(JSONReader.VertebrateData data)
+    {
+        Title.text = data.Name;
+        Subtitle.text = data.LatinName;
+        DescText.text = data.Description;
+    }
 }

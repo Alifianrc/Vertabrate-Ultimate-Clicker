@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DictionaryGroup : MonoBehaviour
 {
-    [SerializeField] public GameObject DictionaryOne;
-    [SerializeField] public GameObject DictionaryTwo;
-    [SerializeField] public GameObject DictionaryThree;
+    [SerializeField] public GameObject[] DictionaryButton;
+    public const int Length = 3;
 }
