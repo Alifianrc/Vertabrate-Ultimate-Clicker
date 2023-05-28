@@ -523,6 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7232231793655722086}
+  - component: {fileID: 4135376136540801151}
   m_Layer: 5
   m_Name: Dictionary Group
   m_TagString: Untagged
@@ -553,6 +554,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 504, y: 94.89981}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4135376136540801151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7232231793655722087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9274e4a48e35014c9ed10ee7a395fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DictionaryOne: {fileID: 3097700578033882605}
+  DictionaryTwo: {fileID: 6573591035144055328}
+  DictionaryThree: {fileID: 8224469618684385789}
 --- !u!1 &8224469618684385789
 GameObject:
   m_ObjectHideFlags: 0
