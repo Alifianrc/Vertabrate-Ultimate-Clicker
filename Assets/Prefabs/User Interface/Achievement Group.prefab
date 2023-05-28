@@ -266,7 +266,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6145258548949182656}
-  - component: {fileID: 6145258548949182659}
   m_Layer: 5
   m_Name: Achievement Group
   m_TagString: Untagged
@@ -296,21 +295,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 504, y: 94.89981}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6145258548949182659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6145258548949182657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8692b4943774b4e86eb98ccf3a7f47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoxGroup: {fileID: 0}
-  FirstStatsBoxPos: {fileID: 0}
-  StatsBoxPrefab: {fileID: 7712819611511401197, guid: eb8b9184428cb594a8602fe24ff064ef, type: 3}
 --- !u!1 &6145258549127600482
 GameObject:
   m_ObjectHideFlags: 0

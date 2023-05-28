@@ -56,6 +56,12 @@ MonoBehaviour:
   BoxGroup: {fileID: 4536442673648255506}
   FirstStatsBoxPos: {fileID: 4536442674743558299}
   StatsBoxPrefab: {fileID: 7712819611511401197, guid: eb8b9184428cb594a8602fe24ff064ef, type: 3}
+  UpgradeButton: {fileID: 8095111132647313824}
+  UpgradeCost: {fileID: 17698896782929183}
+  BoxesHexColor:
+  - '#d9d9d9'
+  - '#ff893b'
+  - '#d9d9d9'
 --- !u!1 &4536442673648255506
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,4 +525,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3793859613505585137}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4536442673381848104}
+        m_TargetAssemblyTypeName: StatsGroup, Assembly-CSharp
+        m_MethodName: IncreaseSubLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
