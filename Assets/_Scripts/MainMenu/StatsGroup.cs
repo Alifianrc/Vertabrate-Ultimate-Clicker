@@ -64,8 +64,6 @@ public class StatsGroup : MonoBehaviour
 
         // Update Color
         UpdateBoxesColor();
-
-        Debug.Log("Sublevel " + SubLevelCount + " MainLevel " + MainLevelsCount);
     }
 
     private Color ConvertHexToColor(string hexColor)
