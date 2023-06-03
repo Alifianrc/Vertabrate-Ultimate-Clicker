@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GoldGroup : MonoBehaviour
+public class GoldGroup : Singleton<GoldGroup>
 {
     [SerializeField] private TextMeshProUGUI textGold;
 

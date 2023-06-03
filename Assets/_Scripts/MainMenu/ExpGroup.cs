@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExpGroup : MonoBehaviour
+public class ExpGroup : Singleton<ExpGroup>
 {
     [SerializeField] private TextMeshProUGUI textLevel;
     [SerializeField] private TextMeshProUGUI textExp;

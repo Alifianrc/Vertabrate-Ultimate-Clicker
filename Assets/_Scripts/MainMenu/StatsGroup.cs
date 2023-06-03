@@ -13,6 +13,9 @@ public class StatsGroup : MonoBehaviour
 
     [SerializeField] private List<string> BoxesHexColor;
 
+    [SerializeField] private Color EnableColor; 
+    [SerializeField] private Color DisabledColor;
+
     public const int BoxesCount = 10;
     public const float StatsBoxMargin = 15.0f;
 
@@ -33,10 +36,13 @@ public class StatsGroup : MonoBehaviour
 
             Boxes[i] = newBox.GetComponent<Image>();
 
-            // Set color
+            // Set box color
             if (i < SubLevelCount) Boxes[i].color = ConvertHexToColor(BoxesHexColor[MainLevelsCount + 1]);
             else Boxes[i].color = ConvertHexToColor(BoxesHexColor[MainLevelsCount]);
         }
+
+        // Set Button Enabled
+        SetEnabled(false);
     }
 
     public void UpdateBoxesColor()
@@ -64,6 +70,18 @@ public class StatsGroup : MonoBehaviour
 
         // Update Color
         UpdateBoxesColor();
+    }
+
+    public void SetEnabled(bool enabled)
+    {
+        if (enabled)
+        {
+            UpgradeButton.GetComponent<Image>().color = EnableColor;
+        }
+        else
+        {
+            UpgradeButton.GetComponent<Image>().color = DisabledColor;
+        }
     }
 
     private Color ConvertHexToColor(string hexColor)

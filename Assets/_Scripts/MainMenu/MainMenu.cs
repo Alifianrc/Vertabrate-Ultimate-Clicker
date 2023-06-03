@@ -11,15 +11,11 @@ public class MainMenu : MonoBehaviourWithLogger
     [SerializeField] private RectTransform mainMenuPanel;
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private GameObject mainMenuButtonTriangle;
-    [SerializeField] private Button firstMenuButton;
 
     [SerializeField] private RectTransform menuPanelGroup;
     [SerializeField] private RectTransform statsPanel;
     [SerializeField] private RectTransform achievementPanel;
     [SerializeField] private RectTransform dictionaryListPanel;
-
-    [SerializeField] private GoldGroup goldGroup;
-    [SerializeField] private ExpGroup expGroup;
 
     // Public Variable
     public const float Slide_Duration = 0.2f;
@@ -81,5 +77,8 @@ public class MainMenu : MonoBehaviourWithLogger
         var xRectPos = -(SubMenuPanelWidth + SubMenuPanelMargin) * index;
         var transformPosition = transform.TransformPoint(new Vector3(xRectPos, 0, 0));
         menuPanelGroup.transform.DOMoveX(transformPosition.x, Slide_Duration);
+
+        // Set Selected Button
+        MainMenuBottomButtonGroup.Instance.SetSelectedButton(index);
     }
 }
