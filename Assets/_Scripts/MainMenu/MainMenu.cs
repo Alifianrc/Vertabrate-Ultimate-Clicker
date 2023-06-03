@@ -1,6 +1,8 @@
 using DG.Tweening;
 using NoSuchStudio.Common;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviourWithLogger
@@ -8,11 +10,16 @@ public class MainMenu : MonoBehaviourWithLogger
     // Object in this main menu group
     [SerializeField] private RectTransform mainMenuPanel;
     [SerializeField] private Button mainMenuButton;
+    [SerializeField] private GameObject mainMenuButtonTriangle;
+    [SerializeField] private Button firstMenuButton;
 
     [SerializeField] private RectTransform menuPanelGroup;
     [SerializeField] private RectTransform statsPanel;
     [SerializeField] private RectTransform achievementPanel;
-    [SerializeField] private RectTransform dictionaryPanel;
+    [SerializeField] private RectTransform dictionaryListPanel;
+
+    [SerializeField] private GoldGroup goldGroup;
+    [SerializeField] private ExpGroup expGroup;
 
     // Public Variable
     public const float Slide_Duration = 0.2f;
@@ -27,7 +34,7 @@ public class MainMenu : MonoBehaviourWithLogger
 
     // Open Close Main Menu ---------------------------------------------------------------------------
     private float MainMenuPanelHeight => mainMenuPanel.rect.height;
-    private float MainMenuButtonHeight => mainMenuButton.GetComponent<RectTransform>().rect.height;
+    //private float MainMenuButtonHeight => mainMenuButton.GetComponent<RectTransform>().rect.height;
     private bool m_mainMenuIsOpen = true;
     public void OpenMainMenu(float duration =  Slide_Duration)
     {
@@ -43,9 +50,11 @@ public class MainMenu : MonoBehaviourWithLogger
     {
         m_mainMenuIsOpen = !m_mainMenuIsOpen;
 
+        mainMenuButtonTriangle.transform.DORotate(new Vector3(0, 0, m_mainMenuIsOpen ? 0 : 180), 0);
+
         var targetY = m_mainMenuIsOpen
-            ? mainMenuPanel.position.y + MainMenuPanelHeight * 2 - MainMenuButtonHeight
-            : mainMenuPanel.position.y - MainMenuPanelHeight * 2 + MainMenuButtonHeight;
+            ? mainMenuPanel.position.y + MainMenuPanelHeight * 2 + 20// - MainMenuButtonHeight
+            : mainMenuPanel.position.y - MainMenuPanelHeight * 2 - 20; // + MainMenuButtonHeight;
         
         mainMenuPanel.DOMoveY(targetY, duration);
     }

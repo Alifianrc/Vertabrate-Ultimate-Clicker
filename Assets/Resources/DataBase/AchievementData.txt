@@ -1,0 +1,31 @@
+{
+    "List":[
+        {
+            "Type":"KilledFish",
+            "TargetName":"Sardine",
+            "Threshold":5,
+            "Reward":60
+        },
+        {
+            "Type":"Level",
+            "TargetName":"Default",
+            "Threshold":5,
+            "Reward":60
+        },
+        {
+            "Name":"Tuna",
+            "LatinName":"Thunnus albacares",
+            "Description":"Tuna fish are large and highly migratory saltwater fish belonging to the Thunnini tribe. They are renowned for their incredible speed, powerful physique, and commercial importance. Tuna have streamlined bodies built for swift swimming, with a torpedo-like shape and a series of finlets that help reduce drag in the water. They can grow to impressive sizes, with some species reaching lengths of over 10 feet (3 meters) and weighing hundreds of pounds.\n\nTuna are widely distributed across the world's oceans and are known for their long-distance migrations. They have a unique circulatory system that enables them to maintain their body temperature higher than the surrounding water, giving them exceptional endurance and allowing them to swim at high speeds. Tuna are voracious predators, feeding on a variety of fish, crustaceans, and squid. They are known for their powerful, streamlined bodies and the thrilling fight they put up when caught by anglers.\n\nTuna species, such as the bluefin tuna, yellowfin tuna, and albacore tuna, are highly valued in both commercial and sport fishing. They are also popular in the culinary world, prized for their firm, flavorful meat. Tuna is commonly used in sushi, sashimi, and various other dishes. However, overfishing and concerns about sustainability have led to increased efforts to manage and protect tuna populations worldwide."
+        },
+        {
+            "Name":"Barracuda",
+            "LatinName":"Sphyraena barracuda",
+            "Description":"The Barracuda fish, known for its sleek and predatory nature, belongs to the Sphyraenidae family. These elongated, predatory fish are found in tropical and subtropical waters around the world. Barracudas have a distinct appearance with a long, slender body covered in silver scales. They are equipped with sharp, pointed teeth and a powerful jaw, making them formidable hunters in the ocean ecosystem.\n\nBarracudas are known for their incredible speed and agility, allowing them to swiftly pursue and capture their prey. They primarily feed on smaller fish, but larger species have been known to consume crustaceans and even smaller barracudas. With their streamlined bodies and keen eyesight, barracudas lie in wait, often near coral reefs or drop-offs, ready to ambush their unsuspecting prey. Their sharp teeth and strong jaws enable them to deliver rapid and powerful strikes.\n\nWhile barracudas are highly skilled predators, they are also popular among recreational anglers due to their challenging fight and thrilling acrobatics when hooked. However, it's important to note that some species of barracudas, particularly larger ones, can carry ciguatera toxin, which can cause food poisoning in humans if consumed. Therefore, caution should be exercised when handling and consuming barracuda fish."
+        },
+        {
+            "Name":"Shark",
+            "LatinName":"Carcharodon carcharias",
+            "Description":"The great white shark is a large and powerful predatory shark that is widely known for its imposing size and reputation as a formidable apex predator. It has a streamlined, torpedo-shaped body with a grayish upper body and a white underbelly, giving it its distinctive appearance. Great white sharks are among the largest predatory fish, with adults reaching lengths of up to 20 feet (6 meters) and weighing several thousand pounds.\n\nOne of the most remarkable features of the great white shark is its set of sharp, serrated teeth, arranged in several rows. They have an incredible bite force and can deliver devastating attacks on their prey, which primarily includes marine mammals such as seals and sea lions. Great whites are also known for their extraordinary hunting technique, using a combination of stealth, speed, and ambush to surprise their prey. They can breach out of the water with incredible power and precision to capture their victims near the surface.\n\nDespite their fearsome reputation, great white sharks are not typically a threat to humans and most interactions are a result of mistaken identity. They are highly intelligent and curious creatures, and their conservation status is a subject of concern due to overfishing and habitat degradation. These magnificent sharks play a vital role in maintaining the balance of marine ecosystems, and their presence in the world's oceans inspires both awe and respect for the wonders of the natural world."
+        }
+    ]   
+}

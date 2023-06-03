@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class JSONReader : Singleton<JSONReader>
 {
     // JSON file
     [SerializeField] private TextAsset JSON_VERTEBRATE_DATA;
+
 
     // Class that will be converted to
     [System.Serializable]
@@ -24,6 +26,9 @@ public class JSONReader : Singleton<JSONReader>
 
     // Variable of that class
     [SerializeField] public VertebrateDataList Vertebrate_Data_List = new VertebrateDataList();
+
+    // Other list
+    [SerializeField] public Sprite[] VertebrateImage;
 
     // Event
     public static Action OnJDataLoaded;
@@ -48,6 +53,18 @@ public class JSONReader : Singleton<JSONReader>
             }
         }
 
+        return null;
+    }
+
+    public Sprite GetVertebrateImage(string name)
+    {
+        foreach(var image in VertebrateImage)
+        {
+            if(name == image.name)
+            {
+                return image;
+            }
+        }
         return null;
     }
 }

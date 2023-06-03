@@ -29,6 +29,7 @@ public class DictionaryListPanel : MonoBehaviour
                 if (index < dictionaryData.Length)
                 {
                     dGroup.DictionaryButton[j].GetComponent<Button>().onClick.AddListener(() => OpenDictionary(dictionaryData[index].Name));
+                    dGroup.DictionaryImage[j].sprite = JSONReader.Instance.GetVertebrateImage(dictionaryData[index].Name);
                 }
                 else
                 {
