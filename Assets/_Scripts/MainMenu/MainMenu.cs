@@ -81,4 +81,9 @@ public class MainMenu : MonoBehaviourWithLogger
         // Set Selected Button
         MainMenuBottomButtonGroup.Instance.SetSelectedButton(index);
     }
+
+    public void OpenHabitatMenu()
+    {
+        MenuManager.Instance.HabitatPanel.SetActive(true);
+    }
 }

@@ -9,6 +9,7 @@ public class AchievementPanel : Singleton<AchievementPanel>
 
     private void Awake()
     {
+        base.Awake();
         JSONReader.OnJDataLoaded += OnJDataLoaded;
     }
 
