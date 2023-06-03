@@ -58,12 +58,14 @@ MonoBehaviour:
   StatsBoxPrefab: {fileID: 7712819611511401197, guid: eb8b9184428cb594a8602fe24ff064ef, type: 3}
   UpgradeButton: {fileID: 8095111132647313824}
   UpgradeCost: {fileID: 17698896782929183}
-  BoxesHexColor:
-  - '#d9d9d9'
-  - '#ff893b'
-  - '#ddffdd'
   EnableColor: {r: 0.2784314, g: 1, b: 0.63529414, a: 1}
   DisabledColor: {r: 0.65882355, g: 0.6627451, b: 0.6627451, a: 1}
+  EnableTextColor: {r: 1, g: 1, b: 1, a: 1}
+  DisabledTextColor: {r: 0.9843137, g: 0.12941177, b: 0.12941177, a: 1}
+  BoxesHexColor:
+  - {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 6.917795e+22}
+  - {r: 1, g: 0.5372549, b: 0.23137255, a: 1}
+  - {r: 0.0681381, g: 0.41509432, b: 0.23973058, a: 1}
 --- !u!1 &4536442673648255506
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,8 +171,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Title
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
+  m_sharedMaterial: {fileID: 7494514349730662197, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -194,8 +196,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -340,8 +342,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
+  m_sharedMaterial: {fileID: 7494514349730662197, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -365,8 +367,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

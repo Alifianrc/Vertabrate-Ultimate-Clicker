@@ -11,10 +11,13 @@ public class StatsGroup : MonoBehaviour
     [SerializeField] private GameObject UpgradeButton;
     [SerializeField] private TextMeshProUGUI UpgradeCost;
 
-    [SerializeField] private List<string> BoxesHexColor;
-
     [SerializeField] private Color EnableColor; 
     [SerializeField] private Color DisabledColor;
+
+    [SerializeField] private Color EnableTextColor;
+    [SerializeField] private Color DisabledTextColor;
+
+    [SerializeField] private Color[] BoxesHexColor;
 
     public const int BoxesCount = 10;
     public const float StatsBoxMargin = 15.0f;
@@ -37,8 +40,8 @@ public class StatsGroup : MonoBehaviour
             Boxes[i] = newBox.GetComponent<Image>();
 
             // Set box color
-            if (i < SubLevelCount) Boxes[i].color = ConvertHexToColor(BoxesHexColor[MainLevelsCount + 1]);
-            else Boxes[i].color = ConvertHexToColor(BoxesHexColor[MainLevelsCount]);
+            if (i < SubLevelCount) Boxes[i].color = BoxesHexColor[MainLevelsCount + 1];
+            else Boxes[i].color = BoxesHexColor[MainLevelsCount];
         }
 
         // Set Button Enabled
@@ -49,8 +52,8 @@ public class StatsGroup : MonoBehaviour
     {
         for (int i = 0; i < BoxesCount; i++)
         {
-            if (i < SubLevelCount) Boxes[i].color = ConvertHexToColor(BoxesHexColor[MainLevelsCount + 1]);
-            else Boxes[i].color = ConvertHexToColor(BoxesHexColor[MainLevelsCount]);
+            if (i < SubLevelCount) Boxes[i].color = BoxesHexColor[MainLevelsCount + 1];
+            else Boxes[i].color = BoxesHexColor[MainLevelsCount];
         }
     }
 
@@ -77,17 +80,12 @@ public class StatsGroup : MonoBehaviour
         if (enabled)
         {
             UpgradeButton.GetComponent<Image>().color = EnableColor;
+            UpgradeCost.color = EnableTextColor;
         }
         else
         {
             UpgradeButton.GetComponent<Image>().color = DisabledColor;
+            UpgradeCost.color = DisabledTextColor;
         }
-    }
-
-    private Color ConvertHexToColor(string hexColor)
-    {
-        ColorUtility.TryParseHtmlString(hexColor, out var color);
-        if(color == null) color = Color.white;
-        return color;
     }
 }

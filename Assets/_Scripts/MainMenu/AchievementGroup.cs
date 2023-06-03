@@ -10,9 +10,16 @@ public class AchievementGroup : MonoBehaviour
     [SerializeField] private TextMeshProUGUI AchievementText;
     [SerializeField] private TextMeshProUGUI ClaimButtonText;
     [SerializeField] private Image ClaimButtonImage;
+    [SerializeField] private Image GoldImage;
 
     [SerializeField] private Color EnabledColor;
     [SerializeField] private Color DisabledColor;
+
+    [SerializeField] private Color EnabledColorText;
+    [SerializeField] private Color DisabledColorText;
+
+    [SerializeField] private Color EnabledGoldColor;
+    [SerializeField] private Color DisabledGoldColor;
 
     public int RewardValue { get; private set; }
 
@@ -24,10 +31,14 @@ public class AchievementGroup : MonoBehaviour
         if (jData.State == AchievementState.OnGoing)
         {
             ClaimButtonImage.color = DisabledColor;
+            ClaimButtonText.color = DisabledColorText;
+            GoldImage.color = DisabledGoldColor;
         }
         else
         {
-            ClaimButtonText.color = EnabledColor;
+            ClaimButtonImage.color = EnabledColor;
+            ClaimButtonText.color = EnabledColorText;
+            GoldImage.color = EnabledGoldColor;
         }
     }
 
@@ -37,13 +48,10 @@ public class AchievementGroup : MonoBehaviour
         {
             case AchievementType.KillFish:
                 return "Kill " + threshold + " Fish";
-                break;
             case AchievementType.ReachingLevel:
                 return "Reach Level " + threshold;
-                break;
             case AchievementType.DoDamage:
                 return "Do " + threshold + " damage";
-                break;
             default:
                 return "Error";
         }

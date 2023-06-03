@@ -191,8 +191,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
+  m_sharedMaterial: {fileID: 7494514349730662197, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -216,15 +216,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -313,8 +313,13 @@ MonoBehaviour:
   AchievementText: {fileID: 6145258549127600508}
   ClaimButtonText: {fileID: 7746780187592552948}
   ClaimButtonImage: {fileID: 6852941186691638042}
+  GoldImage: {fileID: 8063660232568058798}
   EnabledColor: {r: 1, g: 0.5372549, b: 0.23137257, a: 1}
-  DisabledColor: {r: 0.2735849, g: 0.23844177, b: 0.21525453, a: 1}
+  DisabledColor: {r: 0.8509804, g: 0.8509804, b: 0.8509804, a: 1}
+  EnabledColorText: {r: 1, g: 1, b: 1, a: 0}
+  DisabledColorText: {r: 0.3882353, g: 0.39215687, b: 0.14509805, a: 1}
+  EnabledGoldColor: {r: 0.9843138, g: 1, b: 0.23137257, a: 1}
+  DisabledGoldColor: {r: 0.3882353, g: 0.39215687, b: 0.14509805, a: 1}
 --- !u!1 &6145258549127600482
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,8 +388,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Achievement
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
+  m_sharedMaterial: {fileID: 7494514349730662197, guid: 41b650df67b226b47942cec6f6bfd729, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -408,15 +413,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
