@@ -23,6 +23,7 @@ public class AchievementGroup : MonoBehaviour
 
     public int RewardValue { get; private set; }
 
+
     public void SetData(JSONReader.AchevementData jData)
     {
         AchievementText.text = GetAchievemntDesc(jData.Type, jData.Threshold);
@@ -55,5 +56,13 @@ public class AchievementGroup : MonoBehaviour
             default:
                 return "Error";
         }
+    }
+
+    public void SetWidth(float width)
+    {
+        var rectTransform = GetComponent<RectTransform>();
+        Vector2 sizeDelta = rectTransform.sizeDelta;
+        sizeDelta.x = width;
+        rectTransform.sizeDelta = sizeDelta;
     }
 }

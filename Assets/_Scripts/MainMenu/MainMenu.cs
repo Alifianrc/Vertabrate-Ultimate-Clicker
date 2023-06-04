@@ -1,5 +1,6 @@
 using DG.Tweening;
 using NoSuchStudio.Common;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,6 +23,9 @@ public class MainMenu : MonoBehaviourWithLogger
 
     private void Start()
     {
+        StartPos = transform.position.y;
+        // Refresh panel pos based on screen size
+        RefreshPanelPosition();
         // Always close main menu first
         CloseMainMenu(0);
         // Got to stats panel first
@@ -30,6 +34,7 @@ public class MainMenu : MonoBehaviourWithLogger
 
     // Open Close Main Menu ---------------------------------------------------------------------------
     private float MainMenuPanelHeight => mainMenuPanel.rect.height;
+    private float StartPos;
     //private float MainMenuButtonHeight => mainMenuButton.GetComponent<RectTransform>().rect.height;
     private bool m_mainMenuIsOpen = true;
     public void OpenMainMenu(float duration =  Slide_Duration)
@@ -49,16 +54,27 @@ public class MainMenu : MonoBehaviourWithLogger
         mainMenuButtonTriangle.transform.DORotate(new Vector3(0, 0, m_mainMenuIsOpen ? 0 : 180), 0);
 
         var targetY = m_mainMenuIsOpen
-            ? mainMenuPanel.position.y + MainMenuPanelHeight * 2 + 20// - MainMenuButtonHeight
-            : mainMenuPanel.position.y - MainMenuPanelHeight * 2 - 20; // + MainMenuButtonHeight;
-        
-        mainMenuPanel.DOMoveY(targetY, duration);
+            ? mainMenuPanel.anchoredPosition.y + MainMenuPanelHeight    // - MainMenuButtonHeight
+            : mainMenuPanel.anchoredPosition.y - MainMenuPanelHeight;   // + MainMenuButtonHeight;
+
+        mainMenuPanel.DOAnchorPosY(targetY, Slide_Duration, true);
     }
 
     // Slide Panel Menu -------------------------------------------------------------------------------
     private float SubMenuPanelWidth => statsPanel.rect.width;
     private const float SubMenuPanelMargin = 20.0f;
     private int m_subMenuPanelIndex = 0;
+    
+    public void RefreshPanelPosition()
+    {
+        var xRectPos = SubMenuPanelWidth + SubMenuPanelMargin;
+        var transformPosition = transform.TransformPoint(new Vector3(xRectPos, 0, 0));
+        achievementPanel.transform.DOMoveX(transformPosition.x, 0);
+
+        xRectPos = (SubMenuPanelWidth + SubMenuPanelMargin) * 2;
+        transformPosition = transform.TransformPoint(new Vector3(xRectPos, 0, 0));
+        dictionaryListPanel.transform.DOMoveX(transformPosition.x, 0);
+    }
     public void GoToMenuPanel(int index)
     {
         // Checking index value

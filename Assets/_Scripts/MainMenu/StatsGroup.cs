@@ -88,4 +88,12 @@ public class StatsGroup : MonoBehaviour
             UpgradeCost.color = DisabledTextColor;
         }
     }
+
+    public void SetWidth(float width)
+    {
+        var rectTransform = GetComponent<RectTransform>();
+        Vector2 sizeDelta = rectTransform.sizeDelta;
+        sizeDelta.x = width;
+        rectTransform.sizeDelta = sizeDelta;
+    }
 }

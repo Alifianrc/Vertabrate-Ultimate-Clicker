@@ -9,6 +9,9 @@ public class DictionaryListPanel : MonoBehaviour
     [SerializeField] private GameObject Content;
     [SerializeField] private GameObject DictionaryGroupPrefab;
 
+    private float StartWidth = 0;
+    private Action<float> OnContentWidthChanged;
+
     private void Awake()
     {
         JSONReader.OnJDataLoaded += OnJDataLoaded;
@@ -23,6 +26,7 @@ public class DictionaryListPanel : MonoBehaviour
         {
             var newGroup = Instantiate(DictionaryGroupPrefab, Content.transform);
             var dGroup = newGroup.GetComponent<DictionaryGroup>();
+            OnContentWidthChanged += dGroup.SetWidth;
             for(int j = 0; j < DictionaryGroup.Length; j++)
             {
                 var index = j + (i * DictionaryGroup.Length);
@@ -47,5 +51,15 @@ public class DictionaryListPanel : MonoBehaviour
 
         MenuManager.Instance.DictionaryPanel.SetActive(true);
         MenuManager.Instance.DictionaryPanel.GetComponent<DictionaryPanel>().SetData(vertebrateData);
+    }
+
+    private void Update()
+    {
+        var contentWidth = Content.GetComponent<RectTransform>().rect.width;
+        if (StartWidth != contentWidth)
+        {
+            OnContentWidthChanged?.Invoke(contentWidth);
+            StartWidth = contentWidth;
+        }
     }
 }

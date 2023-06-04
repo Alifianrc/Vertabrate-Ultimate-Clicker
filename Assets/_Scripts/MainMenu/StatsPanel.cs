@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AchievementPanel : Singleton<AchievementPanel>
+public class StatsPanel : Singleton<StatsPanel>
 {
-    [SerializeField] private GameObject AchievementGroupPrefrab;
+    [SerializeField] private GameObject StatsGroupPrefrab;
     [SerializeField] private GameObject Content;
 
     private float StartWidth = 0;
@@ -20,14 +20,12 @@ public class AchievementPanel : Singleton<AchievementPanel>
     private void OnJDataLoaded()
     {
         JSONReader.OnJDataLoaded -= OnJDataLoaded;
-        var achievementData = JSONReader.Instance.Achievement_Data_List.List;
 
-        foreach(var achievement in achievementData)
+        for (int i = 0; i < 5; i++)
         {
-            var newGroup = Instantiate(AchievementGroupPrefrab, Content.transform);
-            var achiev = newGroup.GetComponent<AchievementGroup>();
-            achiev.SetData(achievement);
-            OnContentWidthChanged += achiev.SetWidth;
+            var newGroup = Instantiate(StatsGroupPrefrab, Content.transform);
+            var stats = newGroup.GetComponent<StatsGroup>();
+            OnContentWidthChanged += stats.SetWidth;
         }
     }
 
