@@ -16,6 +16,11 @@ public abstract class UnitBase : MonoBehaviour
     public Stats Stats => m_stats;
     public bool IsInitialized { get; private set; }
 
+    private void Start()
+    {
+        Play(AnimationType.Move);
+    }
+
     public void Init(Stats stats, List<AnimationSheet> animations)
     {
         if(IsInitialized) return;
@@ -25,17 +30,17 @@ public abstract class UnitBase : MonoBehaviour
         IsInitialized = true;
     }
 
+    private void OnMouseDown()
+    {
+        TakeDamage(PlayerData.Instance.FinalDamage);
+        m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
+    }
+
     public void Play(AnimationType type) => m_animationHandler.Play(type);
     public void Stop() => m_animationHandler.Stop();
 
     public virtual void TakeDamage(int dmg)
     {
         m_stats.Health -= dmg;
-    }
-
-    private void OnMouseDown()
-    {
-        TakeDamage(PlayerData.Instance.FinalDamage);
-        m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
     }
 }

@@ -13,6 +13,8 @@ public class PreyManager : StaticInstance<PreyManager>
 {
     [SerializeField] private Bounds m_spawnArea;
     [SerializeField] private int m_preyCount;
+
+    public Bounds SpawnArea => m_spawnArea;
     
     public void PopulateArea() {
         for (int i = 0; i < m_preyCount; i++)
@@ -45,12 +47,17 @@ public class PreyManager : StaticInstance<PreyManager>
         spawned.Init(stats, data.Animations);
     }
 
-    private Vector2 RandomPositionWithin(Bounds spawnArea)
+    public Vector2 RandomPositionWithin()
     {
-        var randX = Random.Range(m_spawnArea.min.x, m_spawnArea.max.x);
-        var randY = Random.Range(m_spawnArea.min.y, m_spawnArea.max.y);
+        return RandomPositionWithin(m_spawnArea);
+    }
 
-        return new Vector2(randX, randY);
+    private Vector2 RandomPositionWithin(Bounds area)
+    {
+        var randX = Random.Range(area.min.x, area.max.x);
+        var randY = Random.Range(area.min.y, area.max.y);
+
+        return new(randX, randY);
     }
 
     private void OnDrawGizmosSelected()

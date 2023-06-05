@@ -10,7 +10,5 @@ public class Prey : PreyUnitBase
     {
         // Example usage of a static system
         AudioSystem.Instance.PlaySound(_someSound);
-
-        Play(AnimationType.Move);
     }
 }
