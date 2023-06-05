@@ -27,7 +27,7 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
         Log("Play " + name);
         IsPlaying = true;
         if(fromBeginning) Seek(0);
-        MonoHelper.Instance.InvokeRepeat(NextFrame, 1f / frameRate);
+        MonoHelper.Instance.RunRepeat(NextFrame, 1f / frameRate);
     }
 
     public void Stop()
@@ -69,7 +69,7 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
         if(prev != CurrentSpriteIndex) OnSpriteIndexChanged?.Invoke(CurrentSprite);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         Stop();
     }

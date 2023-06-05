@@ -9,11 +9,11 @@ internal class UnitAnimationHandler : ClassWithLogger
 {
     private List<AnimationSheet> m_animations;
 
-    [SerializeField, ShowOnly] private ScriptableSpriteSheet m_selectedAnimation;
+    [SerializeField] private ScriptableSpriteSheet m_selectedAnimation;
     
     private readonly SpriteRenderer m_spriteRenderer;
 
-    [SerializeField, ShowOnly] private Sprite m_currentSprite;
+    [SerializeField] private Sprite m_currentSprite;
 
     public UnitAnimationHandler(List<AnimationSheet> animations, SpriteRenderer renderer)
     {
@@ -26,6 +26,13 @@ internal class UnitAnimationHandler : ClassWithLogger
         var anim = GetAnimation(type);
         SelectAnimation(anim);
         anim.Play(fromBeginning);
+    }
+
+    public void PlayTemporary(AnimationType type, float time, bool fromBeginning = false)
+    {
+        var current = GetType(m_selectedAnimation);
+        Play(type, fromBeginning);
+        MonoHelper.Instance.Run(() => Play(current, fromBeginning), time);
     }
 
     /// <summary>
@@ -73,5 +80,18 @@ internal class UnitAnimationHandler : ClassWithLogger
 
         //return null;
         throw new Exception($"Animation with type = {type} not found");
+    }
+
+    private AnimationType GetType(ScriptableSpriteSheet spriteSheet)
+    {
+        foreach (var anim in m_animations)
+        {
+            if (anim.SpriteSheet == spriteSheet)
+            {
+                return anim.Type;
+            }
+        }
+
+        throw new Exception($"Animation not found");
     }
 }

@@ -18,6 +18,8 @@ public abstract class UnitBase : MonoBehaviour
 
     public void Init(Stats stats, List<AnimationSheet> animations)
     {
+        if(IsInitialized) return;
+        
         m_animationHandler = new UnitAnimationHandler(animations, GetComponent<SpriteRenderer>());
         m_stats = stats;
         IsInitialized = true;
@@ -33,6 +35,7 @@ public abstract class UnitBase : MonoBehaviour
 
     private void OnMouseDown()
     {
-        throw new NotImplementedException();
+        TakeDamage(PlayerData.Instance.FinalDamage);
+        m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
     }
 }

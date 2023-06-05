@@ -19,12 +19,23 @@ public class MonoHelper : StaticInstance<MonoHelper>
     /// Repeatedly invoke <paramref name="action"/> every <paramref name="interval"/>
     /// while <see cref="RunInvokeInfinitely"/> is true or until <see cref="StopAll"/> is called
     /// </summary>
-    public void InvokeRepeat(Action action, float interval, float delay = 0)
+    public void RunRepeat(Action action, float interval, float delay = 0)
     {
-        StartCoroutine(Invoke(action, delay, interval));
+        StartCoroutine(Run(action, delay, interval));
     }
 
-    private IEnumerator Invoke(Action action, float delay, float interval)
+    public void Run(Action action, float delay = 0)
+    {
+        StartCoroutine(Coroutine(action, delay));
+    }
+
+    private IEnumerator Coroutine(Action action, float delay = 0)
+    {
+        yield return new WaitForSeconds(delay);
+        action.Invoke();
+    }
+
+    private IEnumerator Run(Action action, float delay, float interval)
     {
         yield return new WaitForSeconds(delay);
         do

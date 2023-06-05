@@ -36,10 +36,10 @@ public class MenuManager : Singleton<MenuManager>
 
     public void SetActiveSettingPanel(bool isActive)
     {
-        if ((SettingPanel.active && isActive) || 
-            (!SettingPanel.active && !isActive)) return;
+        if ((SettingPanel.activeSelf && isActive) || 
+            (!SettingPanel.activeSelf && !isActive)) return;
 
-        if (SettingPanel.active)
+        if (SettingPanel.activeSelf)
         {
             SettingPanel.transform.localScale = Vector3.one;
             SettingPanel.transform.DOLocalMoveX(SettingPanel.GetComponent<RectTransform>().rect.width / -2, TransitionTime);
@@ -62,10 +62,10 @@ public class MenuManager : Singleton<MenuManager>
 
     public void SetActiveHabitatPanel(bool isActive)
     {
-        if ((HabitatPanel.active && isActive) ||
-            (!HabitatPanel.active && !isActive)) return;
+        if ((HabitatPanel.activeSelf && isActive) ||
+            (!HabitatPanel.activeSelf && !isActive)) return;
 
-        if (HabitatPanel.active)
+        if (HabitatPanel.activeSelf)
         {
             HabitatPanel.transform.localScale = Vector3.one;
             HabitatPanel.transform.DOLocalMoveX(HabitatPanel.GetComponent<RectTransform>().rect.width / 2, TransitionTime);
@@ -88,10 +88,10 @@ public class MenuManager : Singleton<MenuManager>
 
     public void SetActiveDictionaryPanel(bool isActive)
     {
-        if ((DictionaryPanel.active && isActive) ||
-            (!DictionaryPanel.active && !isActive)) return;
+        if ((DictionaryPanel.activeSelf && isActive) ||
+            (!DictionaryPanel.activeSelf && !isActive)) return;
 
-        if (DictionaryPanel.active)
+        if (DictionaryPanel.activeSelf)
         {
             //DictionaryPanel.transform.localScale = Vector3.one;
             //HabitatPanel.transform.DOLocalMoveX(DictionaryPanel.GetComponent<RectTransform>().rect.width / 2, TransitionTime);

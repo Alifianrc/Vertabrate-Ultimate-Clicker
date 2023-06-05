@@ -11,7 +11,7 @@ public class StatsPanel : Singleton<StatsPanel>
     private float StartWidth = 0;
     private Action<float> OnContentWidthChanged;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         JSONReader.OnJDataLoaded += OnJDataLoaded;
