@@ -49,7 +49,7 @@ public class DictionaryListPanel : MonoBehaviour
         var vertebrateData = JSONReader.Instance.GetVertebrateData(name);
         if (vertebrateData == null) return;
 
-        MenuManager.Instance.DictionaryPanel.SetActive(true);
+        MenuManager.Instance.SetActiveDictionaryPanel(true);
         MenuManager.Instance.DictionaryPanel.GetComponent<DictionaryPanel>().SetData(vertebrateData);
     }
 

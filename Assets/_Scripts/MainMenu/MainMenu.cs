@@ -98,6 +98,6 @@ public class MainMenu : MonoBehaviourWithLogger
 
     public void OpenHabitatMenu()
     {
-        MenuManager.Instance.HabitatPanel.SetActive(true);
+        MenuManager.Instance.SetActiveHabitatPanel(true);
     }
 }
