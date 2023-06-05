@@ -10,6 +10,8 @@ public class Minnow : PreyUnitBase
     {
         // Example usage of a static system
         AudioSystem.Instance.PlaySound(_someSound);
+
+        Play(AnimationType.Move);
     }
 
     public override void ExecuteMove()
@@ -18,6 +20,5 @@ public class Minnow : PreyUnitBase
         // You'll obviously need to accept the move specifics as an argument to this function. 
         // I go into detail in the Grid Game #2 video
         base.ExecuteMove(); // Call this to clean up the move
-        Play(AnimationType.Idle);
     }
 }

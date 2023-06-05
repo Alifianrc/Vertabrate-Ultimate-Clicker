@@ -15,6 +15,10 @@ MonoBehaviour:
   m_animations:
   - Type: 1
     SpriteSheet: {fileID: 11400000, guid: ee927362856266a45b12ea0cb3921954, type: 2}
+  - Type: 2
+    SpriteSheet: {fileID: 11400000, guid: 09d4ef471f32ea54ab795a73d79f4ed5, type: 2}
+  - Type: 3
+    SpriteSheet: {fileID: 11400000, guid: a8b7d14e9e34bac498ba12f1033f9229, type: 2}
   m_stats:
     Health: 10
     EscapeTime: 5

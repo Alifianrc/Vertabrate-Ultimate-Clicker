@@ -1,39 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &282884870965310037
+--- !u!1001 &2953475330314827761
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8605415816478081456, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-      propertyPath: m_Radius
-      value: 1.2346787
-      objectReference: {fileID: 0}
-    - target: {fileID: -8605415816478081456, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.059568644
-      objectReference: {fileID: 0}
     - target: {fileID: 247181567998403891, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
       propertyPath: m_Name
-      value: Minnow
-      objectReference: {fileID: 0}
-    - target: {fileID: 7733806076680173088, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-      propertyPath: m_Size.x
-      value: 5.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7733806076680173088, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-      propertyPath: m_Size.y
-      value: 5.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7733806076680173088, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: dbf68ce4428cdd741b85273763b55843, type: 3}
-    - target: {fileID: 7733806076680173088, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: Barracuda
       objectReference: {fileID: 0}
     - target: {fileID: 8725660014441171876, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
       propertyPath: m_RootOrder
@@ -81,27 +57,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
---- !u!1 &36917309883389798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 247181567998403891, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
-  m_PrefabInstance: {fileID: 282884870965310037}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-7722077394801989462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36917309883389798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce99450c71d29c499ed7a27dd52e596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_animationHandler:
-    m_selectedAnimation: {fileID: 0}
-    m_currentSprite: {fileID: 0}
-  m_stats:
-    Health: 10
-    EscapeTime: 5
-  _someSound: {fileID: 8300000, guid: f998c6451f9154c47a6440b21b677443, type: 3}
