@@ -23,7 +23,6 @@ public class MainMenu : MonoBehaviourWithLogger
 
     private void Start()
     {
-        StartPos = transform.position.y;
         // Refresh panel pos based on screen size
         RefreshPanelPosition();
         // Always close main menu first
@@ -34,10 +33,9 @@ public class MainMenu : MonoBehaviourWithLogger
 
     // Open Close Main Menu ---------------------------------------------------------------------------
     private float MainMenuPanelHeight => mainMenuPanel.rect.height;
-    private float StartPos;
     //private float MainMenuButtonHeight => mainMenuButton.GetComponent<RectTransform>().rect.height;
     private bool m_mainMenuIsOpen = true;
-    public void OpenMainMenu(float duration =  Slide_Duration)
+    public void OpenMainMenu(float duration = Slide_Duration)
     {
         if (m_mainMenuIsOpen) return;
         OpenCloseMainMenu(duration);
@@ -57,7 +55,7 @@ public class MainMenu : MonoBehaviourWithLogger
             ? mainMenuPanel.anchoredPosition.y + MainMenuPanelHeight    // - MainMenuButtonHeight
             : mainMenuPanel.anchoredPosition.y - MainMenuPanelHeight;   // + MainMenuButtonHeight;
 
-        mainMenuPanel.DOAnchorPosY(targetY, Slide_Duration, true);
+        mainMenuPanel.DOAnchorPosY(targetY, duration, true);
     }
 
     // Slide Panel Menu -------------------------------------------------------------------------------
