@@ -45,7 +45,6 @@ public class DictionaryListPanel : MonoBehaviour
 
     public void OpenDictionary(string name)
     {
-        Debug.Log(name);
         var vertebrateData = JSONReader.Instance.GetVertebrateData(name);
         if (vertebrateData == null) return;
 

@@ -35,11 +35,12 @@ public class PreyManager : StaticInstance<PreyManager>
 
     private void InstantiateUnit(ScriptablePrey data, Vector2 pos) {
 
-        var spawned = Instantiate(data.Prefab, pos, Quaternion.identity,transform);
+        var spawned = Instantiate(data.Prefab, pos, Quaternion.identity, transform);
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
         var stats = data.BaseStats;
         stats.Health += 20;
+        stats.EscapeTime += 5;
 
         spawned.Init(stats, data.Animations);
     }

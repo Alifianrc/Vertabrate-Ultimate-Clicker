@@ -14,6 +14,7 @@ public class ScriptablePrey : ScriptableUnitBase {
 [Serializable]
 public enum PreyType {
     Tarodev = 0,
-    Snorlax = 1
+    Snorlax = 1,
+    Minnow  = 2
 }
 
