@@ -42,4 +42,5 @@ public abstract class ScriptableUnitBase : ScriptableObject
 public struct Stats {
     public int Health;
     public int EscapeTime;
+    public float Speed;
 }

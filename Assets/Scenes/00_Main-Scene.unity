@@ -2899,6 +2899,7 @@ GameObject:
   - component: {fileID: 1246104067}
   - component: {fileID: 1246104068}
   - component: {fileID: 1246104069}
+  - component: {fileID: 1246104070}
   m_Layer: 0
   m_Name: Example Game Manager
   m_TagString: Untagged
@@ -2946,6 +2947,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RunInvokeInfinitely: 1
+--- !u!114 &1246104070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246104066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb4f9fce9f044847bc47ea6ee3e51e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: 0
+  critChance: 0
+  critDamage: 0
+  upgradeLevel: 1
 --- !u!1 &1248852308
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,7 +6069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864070564631, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2350944.8
+      value: 2361374.5
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864122605855, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6136,7 +6153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864264810939, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2350786.5
+      value: 2361216.2
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864279847859, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_IsActive

@@ -12,6 +12,7 @@ using UnityEngine;
 public abstract class UnitBase : MonoBehaviour 
 {
     [SerializeField] private UnitAnimationHandler m_animationHandler;
+    [SerializeField] private UnitMovement m_movement;
     [SerializeField] private Stats m_stats;
     public Stats Stats => m_stats;
     public bool IsInitialized { get; private set; }
@@ -25,15 +26,15 @@ public abstract class UnitBase : MonoBehaviour
     {
         if(IsInitialized) return;
         
-        m_animationHandler = new UnitAnimationHandler(animations, GetComponent<SpriteRenderer>());
+        m_animationHandler = new(animations, GetComponent<SpriteRenderer>());
         m_stats = stats;
+        m_movement = new(this, stats.Speed);
         IsInitialized = true;
     }
 
     private void OnMouseDown()
     {
         TakeDamage(PlayerData.Instance.FinalDamage);
-        m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
     }
 
     public void Play(AnimationType type) => m_animationHandler.Play(type);
@@ -42,5 +43,6 @@ public abstract class UnitBase : MonoBehaviour
     public virtual void TakeDamage(int dmg)
     {
         m_stats.Health -= dmg;
+        m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
     }
 }

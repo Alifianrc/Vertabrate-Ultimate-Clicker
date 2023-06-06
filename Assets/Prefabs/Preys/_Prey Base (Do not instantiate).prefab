@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8725660014441171876}
   - component: {fileID: -8605415816478081456}
   - component: {fileID: 7733806076680173088}
+  - component: {fileID: -7891438557324616767}
   m_Layer: 0
-  m_Name: _Hero Base
+  m_Name: _Prey Base (Do not instantiate)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,3 +102,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7891438557324616767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247181567998403891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce99450c71d29c499ed7a27dd52e596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animationHandler:
+    m_selectedAnimation: {fileID: 0}
+    m_currentSprite: {fileID: 0}
+  m_movement:
+    debugPaths: []
+    current: 0
+  m_stats:
+    Health: 0
+    EscapeTime: 0
+    Speed: 0
+  _someSound: {fileID: 0}
