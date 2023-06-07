@@ -87,12 +87,12 @@ internal class UnitAnimationHandler : ClassWithLogger
     {
         foreach (var anim in m_animations)
         {
-            if (anim.Sheet == spriteSheet)
+            if (anim.SheetData == spriteSheet.Data)
             {
                 return anim.type;
             }
         }
 
-        throw new($"Animation not found");
+        throw new($"Animation {spriteSheet} not found");
     }
 }

@@ -17,13 +17,13 @@ public class UnitMovement
     public bool IsMoving { get; private set; }
     public event Action PathComplete;
 
-    public UnitMovement(MonoBehaviour owner, float speed)
+    public UnitMovement(Transform owner, float speed)
     {
-        if (owner == null) throw new ArgumentException("Owner is null", nameof(owner));
+        if (owner == null) throw new ArgumentException("Owner is null", nameof(owner.gameObject));
         m_path = new();
-        m_transform = owner.transform;
+        m_transform = owner;
         m_speed = speed;
-        owner.StartCoroutine(Move());
+        MonoHelper.Instance.Run(Move());
     }
 
     public IEnumerator Move()
@@ -48,6 +48,13 @@ public class UnitMovement
     {
         IsMoving = false;
         m_tween.Kill();
+    }
+
+    public void StopTemporary(float time)
+    {
+        if(!IsMoving) return;
+        Stop();
+        MonoHelper.Instance.Run(Start, time);
     }
 
     private void GeneratePaths()

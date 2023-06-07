@@ -21,7 +21,7 @@ public class MonoHelper : StaticInstance<MonoHelper>
     /// </summary>
     public void RunRepeat(Action action, float interval, float delay = 0)
     {
-        StartCoroutine(Run(action, delay, interval));
+        StartCoroutine(RunRepeatedly(action, delay, interval));
     }
 
     public void Run(Action action, float delay = 0)
@@ -29,13 +29,24 @@ public class MonoHelper : StaticInstance<MonoHelper>
         StartCoroutine(Coroutine(action, delay));
     }
 
-    private IEnumerator Coroutine(Action action, float delay = 0)
+    public void Run(IEnumerator action, float delay = 0)
+    {
+        StartCoroutine(Coroutine(action, delay));
+    }
+
+    private static IEnumerator Coroutine(Action action, float delay = 0)
     {
         yield return new WaitForSeconds(delay);
         action.Invoke();
     }
 
-    private IEnumerator Run(Action action, float delay, float interval)
+    private static IEnumerator Coroutine(IEnumerator action, float delay = 0)
+    {
+        yield return new WaitForSeconds(delay);
+        yield return action;
+    }
+
+    private IEnumerator RunRepeatedly(Action action, float delay, float interval)
     {
         yield return new WaitForSeconds(delay);
         do

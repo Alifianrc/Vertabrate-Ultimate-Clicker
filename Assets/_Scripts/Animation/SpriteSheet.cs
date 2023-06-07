@@ -1,13 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using NoSuchStudio.Common;
 using UnityEngine;
 
-public class SpriteSheet : ClassWithLogger
+[Serializable]
+public class SpriteSheet : ClassWithLogger//, IEquatable<SpriteSheet>
 {
     public ScriptableSpriteSheet Data { get; }
-    [field: SerializeField] public bool Loop { get; private set; }
+    public bool Loop => Data.Loop;
     public int CurrentSpriteIndex { get; private set; }
     public Sprite CurrentSprite => Data[CurrentSpriteIndex];
     public Sprite RandomSprite => Data.RandomSprite;
@@ -60,4 +59,29 @@ public class SpriteSheet : ClassWithLogger
         
         if(prev != CurrentSpriteIndex) OnSpriteIndexChanged?.Invoke(CurrentSprite);
     }
+
+    public override string ToString()
+    {
+        return $"{Data.name} (SpriteSheet)";
+    }
+
+    // public bool Equals(SpriteSheet other)
+    // {
+    //     if (ReferenceEquals(null, other)) return false;
+    //     if (ReferenceEquals(this, other)) return true;
+    //     return Equals(Data, other.Data);
+    // }
+    //
+    // public override bool Equals(object obj)
+    // {
+    //     if (ReferenceEquals(null, obj)) return false;
+    //     if (ReferenceEquals(this, obj)) return true;
+    //     if (obj.GetType() != this.GetType()) return false;
+    //     return Equals((SpriteSheet)obj);
+    // }
+    //
+    // public override int GetHashCode()
+    // {
+    //     return (Data != null ? Data.GetHashCode() : 0);
+    // }
 }

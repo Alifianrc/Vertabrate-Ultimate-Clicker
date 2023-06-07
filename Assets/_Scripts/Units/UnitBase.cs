@@ -14,8 +14,10 @@ public abstract class UnitBase : MonoBehaviour
     [SerializeField] private UnitAnimationHandler m_animationHandler;
     [SerializeField] private UnitMovement m_movement;
     [SerializeField] private Stats m_stats;
+    public event Action<UnitBase> Dead;
     public Stats Stats => m_stats;
     public bool IsInitialized { get; private set; }
+    public bool IsDead { get; private set; }
 
     private void Start()
     {
@@ -28,7 +30,8 @@ public abstract class UnitBase : MonoBehaviour
         
         m_animationHandler = new(animations, GetComponent<SpriteRenderer>());
         m_stats = stats;
-        m_movement = new(this, stats.Speed);
+        m_movement = new(transform, stats.Speed);
+        m_movement.Start();
         m_movement.PathComplete += MovementOnPathComplete;
         IsInitialized = true;
     }
@@ -41,7 +44,6 @@ public abstract class UnitBase : MonoBehaviour
     private void OnMouseDown()
     {
         TakeDamage(PlayerData.Instance.FinalDamage);
-        m_movement.Stop();
     }
 
     public void Play(AnimationType type) => m_animationHandler.Play(type);
@@ -50,6 +52,13 @@ public abstract class UnitBase : MonoBehaviour
     public virtual void TakeDamage(int dmg)
     {
         m_stats.Health -= dmg;
+        m_movement.Stop();
         m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
+
+        if (m_stats.Health <= 0 && !IsDead)
+        {
+            IsDead = true;
+            Dead?.Invoke(this);
+        }
     }
 }

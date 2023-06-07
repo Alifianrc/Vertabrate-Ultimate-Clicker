@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Kit;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,7 +14,7 @@ public class PreyManager : StaticInstance<PreyManager>
 {
     [SerializeField] private Bounds m_spawnArea;
     [SerializeField] private int m_preyCount;
-
+    private List<UnitBase> spawnedUnits = new();
     public Bounds SpawnArea => m_spawnArea;
     
     public void PopulateArea() {
@@ -46,6 +47,16 @@ public class PreyManager : StaticInstance<PreyManager>
         stats.EscapeTime += 5;
 
         spawned.Init(stats, data.Animations);
+        
+        spawned.Dead += OnUnitDead;
+        spawnedUnits.Add(spawned);
+    }
+
+    private void OnUnitDead(UnitBase unit)
+    {
+        spawnedUnits.Remove(unit);
+        
+        //Add score, exp, etc
     }
 
     public Vector2 RandomPositionWithin() => RandomPositionWithin(m_spawnArea);

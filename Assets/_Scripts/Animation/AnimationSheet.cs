@@ -9,6 +9,7 @@ public struct AnimationSheet : IEquatable<AnimationSheet>
     private SpriteSheet m_spriteSheet;
 
     public SpriteSheet Sheet => m_spriteSheet ??= new(spriteSheetData);
+    public ScriptableSpriteSheet SheetData => spriteSheetData;
 
     public static bool operator ==(AnimationSheet a, AnimationSheet b)
     {

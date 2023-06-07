@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BarracudaMove
   m_EditorClassIdentifier: 
   sprites: []
-  frameRate: 24
-  loop: 0
+  <FrameRate>k__BackingField: 24
+  <Loop>k__BackingField: 1

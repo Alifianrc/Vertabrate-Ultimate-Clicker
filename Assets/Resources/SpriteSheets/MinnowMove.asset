@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f439fa33dd589424ba21daa7eeb09f4b, type: 3}
   - {fileID: 21300000, guid: 08b5b4ba10918f545bb72015ce0f10ca, type: 3}
   - {fileID: 21300000, guid: 96945e42d90c189498e390151ff59fef, type: 3}
-  frameRate: 8
-  loop: 1
+  <FrameRate>k__BackingField: 24
+  <Loop>k__BackingField: 1
