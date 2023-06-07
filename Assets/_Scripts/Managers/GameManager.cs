@@ -62,8 +62,7 @@ public class GameManager : StaticInstance<GameManager> {
 
     private void HandlePlayerFreeRoam() {
         
-        // Spawn enemies
-        
+        //Nunggu klik salah satu enemy...
         ChangeState(GameState.FightPrey);
     }
 

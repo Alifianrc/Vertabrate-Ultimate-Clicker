@@ -14,5 +14,5 @@ public class PlayerData : StaticInstance<PlayerData>
     [SerializeField] private int upgradeLevel = 1;
     
     //Target prey
-    private PreyUnitBase selectedPrey;
+    private Prey selectedPrey;
 }

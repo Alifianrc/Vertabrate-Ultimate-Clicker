@@ -12,66 +12,26 @@ using Random = UnityEngine.Random;
 public class ScriptableSpriteSheet : ScriptableObjectWithLogger
 {
     [SerializeField] private List<Sprite> sprites = new();
-    [SerializeField, Range(0, 60)] private int frameRate = 24;
-    [SerializeField] private bool loop;
 
-    public int CurrentSpriteIndex { get; private set; }
-    //private Timer _timer;
-    public Sprite CurrentSprite => sprites[CurrentSpriteIndex];
+    [field: SerializeField]
+    [field: Range(0, 60)]
+    public int FrameRate { get; private set; } = 24;
+    
+    [field: SerializeField] public bool Loop { get; private set; }
+    
     public Sprite RandomSprite => sprites[Random.Range(0, sprites.Count)];
-    public bool IsPlaying { get; private set; }
-    public event Action<Sprite> OnSpriteIndexChanged;
 
-    public void Play(bool fromBeginning = false)
-    {
-        Log("Play " + name);
-        IsPlaying = true;
-        if(fromBeginning) Seek(0);
-        MonoHelper.Instance.RunRepeat(NextFrame, 1f / frameRate);
-    }
+    public int MaxIndex => sprites.Count - 1;
+    
+    public bool IsIndexInValid(int spriteIndex) => spriteIndex < 0 || spriteIndex >= sprites.Count;
 
-    public void Stop()
+    public Sprite this[int i]
     {
-        Log("Stop " + name);
-        MonoHelper.Instance.StopAll();
-        IsPlaying = false;
-    }
-
-    public void Seek(int spriteIndex)
-    {
-        //Log("start seek" + spriteIndex + IsIndexInValid(spriteIndex));
-        if (IsIndexInValid(spriteIndex))
+        get
         {
-            throw new IndexOutOfRangeException("spriteIndex doesn't exist! filename:" + name);
-            // LogError("spriteIndex doesn't exist");
-            // return;
+            if(IsIndexInValid(i)) throw new IndexOutOfRangeException("spriteIndex doesn't exist! filename:" + name);
+            return sprites[i];
         }
-
-        if (CurrentSpriteIndex == spriteIndex) return;
-        CurrentSpriteIndex = spriteIndex;
-        //Log($"Seek to {CurrentSpriteIndex}");
-    }
-
-    private bool IsIndexInValid(int spriteIndex)
-    {
-        return spriteIndex < 0 || spriteIndex >= sprites.Count;
-    }
-
-    private void NextFrame()
-    {
-        var prev = CurrentSpriteIndex;
-        CurrentSpriteIndex++;
-        if (IsIndexInValid(CurrentSpriteIndex))
-        {
-            Seek(loop ? 0 : sprites.Count - 1);
-        }
-        
-        if(prev != CurrentSpriteIndex) OnSpriteIndexChanged?.Invoke(CurrentSprite);
-    }
-
-    private void OnDisable()
-    {
-        Stop();
     }
 }
 
@@ -79,36 +39,4 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
 public enum AnimationType
 {
     Invalid, Idle, Move, Hurt, Death
-}
-
-[Serializable]
-public struct AnimationSheet : IEquatable<AnimationSheet>
-{
-    public AnimationType Type;
-    public ScriptableSpriteSheet SpriteSheet;
-
-    public static bool operator ==(AnimationSheet a, AnimationSheet b)
-    {
-        return a.Type == b.Type && a.SpriteSheet == b.SpriteSheet;
-    }
-
-    public static bool operator !=(AnimationSheet a, AnimationSheet b)
-    {
-        return !(a == b);
-    }
-
-    public bool Equals(AnimationSheet other)
-    {
-        return Type == other.Type && Equals(SpriteSheet, other.SpriteSheet);
-    }
-
-    public override bool Equals(object obj)
-    {
-        return obj is AnimationSheet other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine((int)Type, SpriteSheet);
-    }
 }

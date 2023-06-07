@@ -16,19 +16,16 @@ public abstract class ScriptableUnitBase : ScriptableObject
     public List<AnimationSheet> Animations => m_animations;
 
     // Used in game
-    public PreyUnitBase Prefab;
-    
-    // Used in menus
-    public string Description;
-    public Sprite MenuSprite;
+    public UnitBase Prefab;
 
     private void OnValidate()
     {
         foreach (var sheet in m_animations)
         {
-            if (m_animations.Any(other => sheet != other && sheet.Type == other.Type))
+            if (m_animations.Any(other =>
+                    sheet != other && sheet.type == other.type && sheet.type != AnimationType.Invalid))
             {
-                throw new Exception($"Duplicates found! File:{name}. Duplicates:{sheet.Type}");
+                throw new($"Duplicates found! File:{name}. Duplicates:{sheet.type}");
             }
         }
     }

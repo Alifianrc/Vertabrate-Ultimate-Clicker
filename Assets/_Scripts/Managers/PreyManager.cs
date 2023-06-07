@@ -35,8 +35,9 @@ public class PreyManager : StaticInstance<PreyManager>
         InstantiateUnit(data, position);
     }
 
-    private void InstantiateUnit(ScriptablePrey data, Vector2 pos) {
-
+    private void InstantiateUnit(ScriptablePrey data, Vector2 pos)
+    {
+        if (data == null || data.Prefab == null) throw new ArgumentException("Prey data is null or there is no prefab assigned!");
         var spawned = Instantiate(data.Prefab, pos, Quaternion.identity, transform);
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
@@ -47,12 +48,9 @@ public class PreyManager : StaticInstance<PreyManager>
         spawned.Init(stats, data.Animations);
     }
 
-    public Vector2 RandomPositionWithin()
-    {
-        return RandomPositionWithin(m_spawnArea);
-    }
+    public Vector2 RandomPositionWithin() => RandomPositionWithin(m_spawnArea);
 
-    private Vector2 RandomPositionWithin(Bounds area)
+    private static Vector2 RandomPositionWithin(Bounds area)
     {
         var randX = Random.Range(area.min.x, area.max.x);
         var randY = Random.Range(area.min.y, area.max.y);

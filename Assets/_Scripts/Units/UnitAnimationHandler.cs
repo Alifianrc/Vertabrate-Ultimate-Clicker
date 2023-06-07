@@ -9,7 +9,7 @@ internal class UnitAnimationHandler : ClassWithLogger
 {
     private List<AnimationSheet> m_animations;
 
-    [SerializeField] private ScriptableSpriteSheet m_selectedAnimation;
+    [SerializeField] private SpriteSheet m_selectedAnimation;
     
     private readonly SpriteRenderer m_spriteRenderer;
 
@@ -31,6 +31,7 @@ internal class UnitAnimationHandler : ClassWithLogger
     public void PlayTemporary(AnimationType type, float time, bool fromBeginning = false)
     {
         var current = GetType(m_selectedAnimation);
+        if(current == type) return;
         Play(type, fromBeginning);
         MonoHelper.Instance.Run(() => Play(current, fromBeginning), time);
     }
@@ -51,7 +52,7 @@ internal class UnitAnimationHandler : ClassWithLogger
         m_currentSprite = newSprite;
     }
 
-    private void SelectAnimation(ScriptableSpriteSheet animation)
+    private void SelectAnimation(SpriteSheet animation)
     {
         DeselectAnimation();
 
@@ -68,13 +69,13 @@ internal class UnitAnimationHandler : ClassWithLogger
         }
     }
 
-    private ScriptableSpriteSheet GetAnimation(AnimationType type)
+    private SpriteSheet GetAnimation(AnimationType type)
     {
         foreach (var anim in m_animations)
         {
-            if (anim.Type == type)
+            if (anim.type == type)
             {
-                return anim.SpriteSheet;
+                return anim.Sheet;
             }
         }
 
@@ -82,16 +83,16 @@ internal class UnitAnimationHandler : ClassWithLogger
         throw new Exception($"Animation with type = {type} not found");
     }
 
-    private AnimationType GetType(ScriptableSpriteSheet spriteSheet)
+    private AnimationType GetType(SpriteSheet spriteSheet)
     {
         foreach (var anim in m_animations)
         {
-            if (anim.SpriteSheet == spriteSheet)
+            if (anim.Sheet == spriteSheet)
             {
-                return anim.Type;
+                return anim.type;
             }
         }
 
-        throw new Exception($"Animation not found");
+        throw new($"Animation not found");
     }
 }

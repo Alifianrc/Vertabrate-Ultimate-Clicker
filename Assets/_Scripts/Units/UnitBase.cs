@@ -29,12 +29,19 @@ public abstract class UnitBase : MonoBehaviour
         m_animationHandler = new(animations, GetComponent<SpriteRenderer>());
         m_stats = stats;
         m_movement = new(this, stats.Speed);
+        m_movement.PathComplete += MovementOnPathComplete;
         IsInitialized = true;
+    }
+
+    private void MovementOnPathComplete()
+    {
+        StartCoroutine(m_movement.Move());
     }
 
     private void OnMouseDown()
     {
         TakeDamage(PlayerData.Instance.FinalDamage);
+        m_movement.Stop();
     }
 
     public void Play(AnimationType type) => m_animationHandler.Play(type);

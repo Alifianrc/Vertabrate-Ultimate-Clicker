@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barracuda
       objectReference: {fileID: 0}
+    - target: {fileID: 7733806076680173088, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c93a94bbedbbc44b96f02d62d4149cc, type: 3}
+    - target: {fileID: 7733806076680173088, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8725660014441171876, guid: e1cbd5da8e079764d851c04b0552ddf5, type: 3}
       propertyPath: m_RootOrder
       value: 0
