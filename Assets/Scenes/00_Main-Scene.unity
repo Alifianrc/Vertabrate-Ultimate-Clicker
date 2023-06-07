@@ -2095,6 +2095,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2136,8 +2137,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 50
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2168,6 +2169,22 @@ Transform:
   m_Father: {fileID: 1157547466}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51ade89f298c1448b2c9e7c53a2f497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
+  zoomStep: 0
+  minCamSize: 0
+  maxCamSize: 0
 --- !u!1 &974157517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4485884863768437634, guid: cb5500ff242eef94b97273e75386b919, type: 3}
@@ -3085,8 +3102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spawnArea:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 10, y: 20, z: 0}
-  m_preyCount: 10
+    m_Extent: {x: 60, y: 30, z: 0}
+  m_preyCount: 100
 --- !u!1 &1502463435
 GameObject:
   m_ObjectHideFlags: 0
@@ -6069,7 +6086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864070564631, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2435961.8
+      value: 2478834.8
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864122605855, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6153,7 +6170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864264810939, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2435803.5
+      value: 2478676.5
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864279847859, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_IsActive
