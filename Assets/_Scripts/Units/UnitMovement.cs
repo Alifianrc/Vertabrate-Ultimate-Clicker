@@ -2,17 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[Serializable]
 public class UnitMovement
 {
-    private Queue<Vector3> m_path;
-    private Transform m_transform;
-    private float m_speed;
+    private readonly Queue<Vector3> m_path;
+    private readonly Transform m_transform;
+    private readonly float m_speed;
     private Tween m_tween;
     public bool IsMoving { get; private set; }
     public event Action PathComplete;
@@ -33,6 +30,8 @@ public class UnitMovement
             var endValue = m_path.Dequeue();
             var duration = Vector3.Distance(m_transform.position, endValue) / m_speed;
             yield return new WaitUntil(() => IsMoving);
+            var direction = m_transform.position - endValue;
+            m_transform.DOScaleX(direction.x > 0 ? 1 : -1, 0.5f);
             yield return (m_tween = m_transform.DOMove(endValue, duration)).WaitForCompletion();
         }
         PathComplete?.Invoke();
