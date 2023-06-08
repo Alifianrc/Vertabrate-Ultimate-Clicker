@@ -23,8 +23,7 @@ public class UnitMovement
         m_path = new();
         m_transform = owner;
         m_speed = speed;
-        GeneratePaths();
-        MonoHelper.Instance.Run(Move());
+        Start();
     }
 
     private IEnumerator Move()
@@ -41,7 +40,11 @@ public class UnitMovement
 
     public void Start()
     {
-        if(m_path.Count <= 0) GeneratePaths();
+        if(m_path.Count <= 0)
+        {
+            GeneratePaths();
+            MonoHelper.Instance.Run(Move());
+        }
         IsMoving = true;
     }
 
@@ -60,7 +63,7 @@ public class UnitMovement
 
     private void GeneratePaths()
     {
-        var count = Random.Range(0, 100);
+        var count = Random.Range(1, 10);
         while (count-- > 0)
         {
             m_path.Enqueue(PreyManager.Instance.RandomPositionWithin());
