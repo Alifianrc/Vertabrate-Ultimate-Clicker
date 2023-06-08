@@ -38,6 +38,7 @@ public class CameraMovement : StaticInstance<CameraMovement>
     public void PanCamera(Vector3 targetPos)
     {
         targetPos.z = cam.transform.position.z;
+        if(Vector3.Distance(cam.transform.position, targetPos) < 0.1f) return;
         cam.transform.DOMove(targetPos, 1f);
     }
 

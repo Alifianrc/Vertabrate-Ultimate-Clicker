@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb288bc053671b44833993e1be01099, type: 3}
   m_Name: BarracudaMove
   m_EditorClassIdentifier: 
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 1c93a94bbedbbc44b96f02d62d4149cc, type: 3}
   <FrameRate>k__BackingField: 24
   <Loop>k__BackingField: 1

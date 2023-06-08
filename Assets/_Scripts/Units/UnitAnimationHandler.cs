@@ -13,8 +13,8 @@ internal class UnitAnimationHandler : ClassWithLogger
     private List<AnimationSheet> m_animations;
     private SpriteSheet m_selectedAnimation;
     private readonly SpriteRenderer m_spriteRenderer;
-    private Sprite m_currentSprite;
     private Tween m_colorTween;
+    private Tween m_fadeTween;
     private bool m_isDisabled;
 
     public UnitAnimationHandler(List<AnimationSheet> animations, SpriteRenderer renderer)
@@ -23,7 +23,13 @@ internal class UnitAnimationHandler : ClassWithLogger
         m_spriteRenderer = renderer;
     }
 
-    public void Disable() => m_isDisabled = true;
+    public void Disable()
+    {
+        m_fadeTween?.Kill();
+        m_colorTween?.Kill();
+        m_isDisabled = true;
+    }
+
     public void Enable() => m_isDisabled = false;
 
     public void ChangeColorTemporary(Color initialColor, Color newColor, float time)
@@ -37,7 +43,8 @@ internal class UnitAnimationHandler : ClassWithLogger
     public void SetVisible(float alpha)
     {
         if (m_isDisabled) return;
-        m_spriteRenderer.DOFade(alpha, 1);
+        m_fadeTween?.Kill();
+        m_fadeTween = m_spriteRenderer.DOFade(alpha, 1);
     }
         
     public void Play(AnimationType type, bool fromBeginning = false)
@@ -69,7 +76,6 @@ internal class UnitAnimationHandler : ClassWithLogger
         if (m_isDisabled) return;
         //Log("Change sprite to " + newSprite);
         m_spriteRenderer.sprite = newSprite;
-        m_currentSprite = newSprite;
     }
 
     private void SelectAnimation(SpriteSheet animation)

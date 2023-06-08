@@ -15,10 +15,12 @@ MonoBehaviour:
   m_animations:
   - type: 2
     spriteSheetData: {fileID: 11400000, guid: 00dfb2882f9ca4541a673fbb878e3dc4, type: 2}
+  - type: 3
+    spriteSheetData: {fileID: 11400000, guid: 00dfb2882f9ca4541a673fbb878e3dc4, type: 2}
   m_stats:
     health: 20
     escapeTime: 5
-    speed: 20
+    speed: 10
     exp: 1
   m_healthMultiplier: 1
   Prefab: {fileID: 4217375153343114288, guid: 49df9fba3d72c68409ef9a8f79471fc4, type: 3}

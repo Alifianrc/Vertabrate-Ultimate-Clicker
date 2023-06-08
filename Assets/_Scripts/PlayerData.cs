@@ -6,18 +6,16 @@ using Random = UnityEngine.Random;
 
 public class PlayerData : StaticInstance<PlayerData>
 {
-    //Stats
-    public int FinalDamage =>
+    private int FinalDamage =>
         Mathf.FloorToInt(attack * Crit(critChance, critMultiplier) * upgradeLevel);
 
+    [Header("Damage Setting")]
     [SerializeField] private int attack;
     [SerializeField, Range(0, 100)] private float critChance;
     [SerializeField, Min(1)] private float critMultiplier;
-    
-    //Upgrades
     [SerializeField] private int upgradeLevel = 1;
-    
-    //Target prey
+
+    [SerializeField] private Vector3 cameraOffset;
     private UnitBase m_selectedPrey;
 
     private int m_exp;
@@ -31,6 +29,11 @@ public class PlayerData : StaticInstance<PlayerData>
         RefreshUI();
     }
 
+    private void Update()
+    {
+        if(m_selectedPrey != null) CameraMovement.Instance.PanCamera(m_selectedPrey.transform.position + cameraOffset);
+    }
+
     public void OnClickPrey(UnitBase unit)
     {
         if (m_selectedPrey == null)
@@ -41,7 +44,6 @@ public class PlayerData : StaticInstance<PlayerData>
             unit.SetVisible(true);
             unit.Dead += PreyOnDead;
             CameraMovement.Instance.ZoomIn();
-            CameraMovement.Instance.PanCamera(unit.transform.position);
         }
         else if (m_selectedPrey == unit)
         {
