@@ -24,6 +24,7 @@ MonoBehaviour:
     escapeTime: 10
     speed: 5
     exp: 1
+    coin: 5
   m_healthMultiplier: 1
   Prefab: {fileID: 1267473280690842004, guid: 29c5d632cde92bb45b570d1c3e34bc8d, type: 3}
   Type: 2

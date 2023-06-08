@@ -24,10 +24,12 @@ public class PlayerData : StaticInstance<PlayerData>
     private int m_coins;
 
     public static event Action LevelUp;
+    public static event Action<int, int, int> ExpLevelUpdate;
+    public static event Action<int> GoldUpdate;
 
     private void Start()
     {
-        RefreshXpUI();
+        ExpLevelUpdate?.Invoke(m_exp, m_levelUpRequirement, m_level);
         AddCoins(0);
     }
 
@@ -78,13 +80,7 @@ public class PlayerData : StaticInstance<PlayerData>
             AddCoins(50 * m_level);
             LevelUp?.Invoke();
         }
-        RefreshXpUI();
-    }
-
-    private void RefreshXpUI()
-    {
-        ExpGroup.Instance.SetExp(m_exp, m_levelUpRequirement);
-        ExpGroup.Instance.SetLevel(m_level);
+        ExpLevelUpdate?.Invoke(m_exp, m_levelUpRequirement, m_level);
     }
 
     private static float Crit(float chance, float multiplier)
@@ -113,6 +109,6 @@ public class PlayerData : StaticInstance<PlayerData>
     private void AddCoins(int amount)
     {
         m_coins += amount;
-        GoldGroup.Instance.SetGoldValue(m_coins);
+        GoldUpdate?.Invoke(m_coins);
     }
 }

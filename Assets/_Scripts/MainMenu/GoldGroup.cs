@@ -7,7 +7,14 @@ public class GoldGroup : Singleton<GoldGroup>
 {
     [SerializeField] private TextMeshProUGUI textGold;
 
-    public void SetGoldValue(int value)
+    protected override void Awake()
+    {
+        base.Awake();
+
+        PlayerData.GoldUpdate += SetGoldValue;
+    }
+
+    private void SetGoldValue(int value)
     {
         textGold.text = value.ToString();
     }

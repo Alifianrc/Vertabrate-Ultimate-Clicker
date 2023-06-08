@@ -10,12 +10,16 @@ public class ExpGroup : Singleton<ExpGroup>
     [SerializeField] private TextMeshProUGUI textExp;
     [SerializeField] private Slider slider;
 
-    public void SetLevel(int level)
+    protected override void Awake()
     {
-        textLevel.text = "Lv." + level;
+        base.Awake();
+        
+        PlayerData.ExpLevelUpdate += PlayerDataOnExpLevelUpdate;
     }
-    public void SetExp(int currentExp, int maxExp)
+
+    private void PlayerDataOnExpLevelUpdate(int currentExp, int maxExp, int level)
     {
         textExp.text = currentExp + "/" + maxExp;
+        textLevel.text = "Lv." + level;
     }
 }
