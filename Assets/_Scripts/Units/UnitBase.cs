@@ -46,6 +46,7 @@ public abstract class UnitBase : MonoBehaviourWithLogger
     {
         m_stats.health -= dmg;
         //Log($"Damage: {dmg}. Health left: {m_stats.health}");
+        StopMovement();
         m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
         m_animationHandler.ChangeColorTemporary(Color.white, Color.red, 0.5f);
 

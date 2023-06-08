@@ -41,4 +41,5 @@ public struct Stats {
     public int escapeTime;
     public float speed;
     public int exp;
+    public int coin;
 }

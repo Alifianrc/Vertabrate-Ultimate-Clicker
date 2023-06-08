@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class ResourceSystem : StaticInstance<ResourceSystem> {
     [field: SerializeField] public List<ScriptablePrey> Preys { get; private set; }
+    [field: SerializeField] public List<ScriptableShopItem> ShopItems { get; private set; }
 
     protected override void Awake() {
         base.Awake();
@@ -17,8 +18,10 @@ public class ResourceSystem : StaticInstance<ResourceSystem> {
 
     private void AssembleResources() {
         Preys = Resources.LoadAll<ScriptablePrey>($"Preys").ToList();
+        ShopItems = Resources.LoadAll<ScriptableShopItem>($"ShopItems").ToList();
     }
 
     public ScriptablePrey GetPrey(PreyType t) => Preys.FirstOrDefault(p => p.Type == t);
     public ScriptablePrey GetRandomPrey() => Preys[Random.Range(0, Preys.Count)];
+    public ScriptableShopItem GetRandomShopItem() => ShopItems[Random.Range(0, ShopItems.Count)];
 }   

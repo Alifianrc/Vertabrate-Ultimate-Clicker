@@ -1,15 +1,15 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StatsGroup : MonoBehaviour
 {
+    [SerializeField] private TMP_Text title;
     [SerializeField] private GameObject BoxGroup;
     [SerializeField] private Transform FirstStatsBoxPos;
     [SerializeField] private GameObject StatsBoxPrefab;
     [SerializeField] private GameObject UpgradeButton;
-    [SerializeField] private TextMeshProUGUI UpgradeCost;
+    [SerializeField] private TMP_Text UpgradeCost;
 
     [SerializeField] private Color EnableColor; 
     [SerializeField] private Color DisabledColor;
@@ -18,14 +18,18 @@ public class StatsGroup : MonoBehaviour
     [SerializeField] private Color DisabledTextColor;
 
     [SerializeField] private Color[] BoxesHexColor;
+    private ScriptableShopItem m_shopItemData;
 
     public const int BoxesCount = 10;
     public const float StatsBoxMargin = 15.0f;
 
     public Image[] Boxes { get; private set; }
 
-    public int MainLevelsCount { get; set; } = 0;
-    public int SubLevelCount { get; set; } = 0;
+    public int MainLevelsCount { get; private set; }
+    public int SubLevelCount { get; private set; }
+
+    public int Cost => Mathf.FloorToInt(m_shopItemData.CostMultiplier * (SubLevelCount + MainLevelsCount * BoxesCount) +
+                                        m_shopItemData.BaseCost);
 
     private void Start()
     {
@@ -46,6 +50,10 @@ public class StatsGroup : MonoBehaviour
 
         // Set Button Enabled
         SetEnabled(false);
+
+        m_shopItemData = ResourceSystem.Instance.GetRandomShopItem();
+        title.text = m_shopItemData.name;
+        UpdateUpgradeCost();
     }
 
     public void UpdateBoxesColor()
@@ -57,13 +65,15 @@ public class StatsGroup : MonoBehaviour
         }
     }
 
-    public void UpdateUpgradeCost(int value)
+    public void UpdateUpgradeCost()
     {
-        UpgradeCost.text = value.ToString();
+        UpgradeCost.text = Cost.ToString();
     }
 
     public void IncreaseSubLevel()
     {
+        if(!PlayerData.Instance.TryReduceCoins(Cost)) return;
+        
         SubLevelCount++;
         if(SubLevelCount >= BoxesCount)
         {
@@ -73,6 +83,7 @@ public class StatsGroup : MonoBehaviour
 
         // Update Color
         UpdateBoxesColor();
+        UpdateUpgradeCost();
     }
 
     public void SetEnabled(bool enabled)

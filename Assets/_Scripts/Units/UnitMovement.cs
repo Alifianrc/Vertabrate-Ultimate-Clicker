@@ -27,9 +27,9 @@ public class UnitMovement
     {
         while (m_path.Count > 0)
         {
+            yield return new WaitUntil(() => IsMoving);
             var endValue = m_path.Dequeue();
             var duration = Vector3.Distance(m_transform.position, endValue) / m_speed;
-            yield return new WaitUntil(() => IsMoving);
             var direction = m_transform.position - endValue;
             m_transform.DOScaleX(direction.x > 0 ? 1 : -1, 0.5f);
             yield return (m_tween = m_transform.DOMove(endValue, duration)).WaitForCompletion();

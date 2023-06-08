@@ -21,12 +21,14 @@ public class PlayerData : StaticInstance<PlayerData>
     private int m_exp;
     private int m_levelUpRequirement = 3;
     private int m_level;
+    private int m_coins;
 
     public static event Action LevelUp;
 
     private void Start()
     {
-        RefreshUI();
+        RefreshXpUI();
+        AddCoins(0);
     }
 
     private void Update()
@@ -56,6 +58,7 @@ public class PlayerData : StaticInstance<PlayerData>
         PreyManager.Instance.SetAllVisibility(true);
         CameraMovement.Instance.ZoomOut();
         AddExp(unit.Stats.exp);
+        AddCoins(unit.Stats.coin);
         m_selectedPrey = null;
         Destroy(unit.gameObject);
     }
@@ -70,11 +73,15 @@ public class PlayerData : StaticInstance<PlayerData>
             m_level++;
             m_levelUpRequirement = m_level * 3 + 3;
         }
-        if(m_level != initialLevel) LevelUp?.Invoke();
-        RefreshUI();
+        if(m_level != initialLevel)
+        {
+            AddCoins(50 * m_level);
+            LevelUp?.Invoke();
+        }
+        RefreshXpUI();
     }
 
-    private void RefreshUI()
+    private void RefreshXpUI()
     {
         ExpGroup.Instance.SetExp(m_exp, m_levelUpRequirement);
         ExpGroup.Instance.SetLevel(m_level);
@@ -88,5 +95,24 @@ public class PlayerData : StaticInstance<PlayerData>
             return multiplier;
         }
         return 1;
+    }
+
+    public static void UpgradeAttack()
+    {
+        Instance.upgradeLevel++;
+    }
+
+    public bool TryReduceCoins(int cost)
+    {
+        if (m_coins < cost) return false;
+        
+        m_coins -= cost;
+        return true;
+    }
+
+    private void AddCoins(int amount)
+    {
+        m_coins += amount;
+        GoldGroup.Instance.SetGoldValue(m_coins);
     }
 }
