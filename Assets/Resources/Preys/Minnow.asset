@@ -20,9 +20,10 @@ MonoBehaviour:
   - type: 2
     spriteSheetData: {fileID: 11400000, guid: 09d4ef471f32ea54ab795a73d79f4ed5, type: 2}
   m_stats:
-    Health: 10
-    EscapeTime: 5
-    Speed: 5
+    health: 50
+    escapeTime: 10
+    speed: 5
+    exp: 1
   m_healthMultiplier: 1
   Prefab: {fileID: 1267473280690842004, guid: 29c5d632cde92bb45b570d1c3e34bc8d, type: 3}
   Type: 2

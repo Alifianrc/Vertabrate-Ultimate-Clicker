@@ -33,6 +33,11 @@ public class ScriptableSpriteSheet : ScriptableObjectWithLogger
             return sprites[i];
         }
     }
+
+    public override string ToString()
+    {
+        return name;
+    }
 }
 
 [Serializable]

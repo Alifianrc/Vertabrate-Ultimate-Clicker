@@ -37,6 +37,7 @@ public class CameraMovement : StaticInstance<CameraMovement>
 
     public void PanCamera(Vector3 targetPos)
     {
+        targetPos.z = cam.transform.position.z;
         cam.transform.DOMove(targetPos, 1f);
     }
 

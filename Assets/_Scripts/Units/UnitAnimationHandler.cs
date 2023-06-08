@@ -11,10 +11,11 @@ using UnityEngine;
 internal class UnitAnimationHandler : ClassWithLogger
 {
     private List<AnimationSheet> m_animations;
-    [SerializeField] private SpriteSheet m_selectedAnimation;
+    private SpriteSheet m_selectedAnimation;
     private readonly SpriteRenderer m_spriteRenderer;
-    [SerializeField] private Sprite m_currentSprite;
-    private Tween colorTween;
+    private Sprite m_currentSprite;
+    private Tween m_colorTween;
+    private bool m_isDisabled;
 
     public UnitAnimationHandler(List<AnimationSheet> animations, SpriteRenderer renderer)
     {
@@ -22,15 +23,20 @@ internal class UnitAnimationHandler : ClassWithLogger
         m_spriteRenderer = renderer;
     }
 
+    public void Disable() => m_isDisabled = true;
+    public void Enable() => m_isDisabled = false;
+
     public void ChangeColorTemporary(Color initialColor, Color newColor, float time)
     {
-        colorTween?.Kill();
+        if (m_isDisabled) return;
+        m_colorTween?.Kill();
         m_spriteRenderer.color = newColor;
-        colorTween = m_spriteRenderer.DOColor(initialColor, time);
+        m_colorTween = m_spriteRenderer.DOColor(initialColor, time);
     }
 
     public void SetVisible(float alpha)
     {
+        if (m_isDisabled) return;
         m_spriteRenderer.DOFade(alpha, 1);
     }
         
@@ -60,6 +66,7 @@ internal class UnitAnimationHandler : ClassWithLogger
 
     private void ChangeSprite(Sprite newSprite)
     {
+        if (m_isDisabled) return;
         //Log("Change sprite to " + newSprite);
         m_spriteRenderer.sprite = newSprite;
         m_currentSprite = newSprite;
@@ -93,7 +100,7 @@ internal class UnitAnimationHandler : ClassWithLogger
         }
 
         //return null;
-        throw new Exception($"Animation with type = {type} not found");
+        throw new($"Animation with type = {type} not found");
     }
 
     private AnimationType GetType(SpriteSheet spriteSheet)

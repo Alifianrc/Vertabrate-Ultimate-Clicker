@@ -10,25 +10,12 @@ public class ExpGroup : Singleton<ExpGroup>
     [SerializeField] private TextMeshProUGUI textExp;
     [SerializeField] private Slider slider;
 
-    private int currentExp;
-    private int maxExp;
-
     public void SetLevel(int level)
     {
-        textLevel.text = "Lv." + level.ToString();
+        textLevel.text = "Lv." + level;
     }
-    public void SetExp(int value)
+    public void SetExp(int currentExp, int maxExp)
     {
-        currentExp = value;
-        RefreshText();
-    }
-    public void SetMaxExp(int value)
-    {
-        maxExp = value;
-        RefreshText();
-    }
-    private void RefreshText()
-    {
-        textExp.text = currentExp.ToString() + "/" + maxExp.ToString();
+        textExp.text = currentExp + "/" + maxExp;
     }
 }

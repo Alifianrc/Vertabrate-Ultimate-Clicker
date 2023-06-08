@@ -20,32 +20,22 @@ public abstract class UnitBase : MonoBehaviourWithLogger
     public bool IsInitialized { get; private set; }
     public bool IsDead { get; private set; }
 
-    private void Start()
-    {
-        PlayAnimation(AnimationType.Move);
-    }
-
     public void Init(Stats stats, List<AnimationSheet> animations)
     {
         if(IsInitialized) return;
         
         m_animationHandler = new(animations, GetComponent<SpriteRenderer>());
         m_stats = stats;
-        m_movement = new(transform, stats.Speed);
+        m_movement = new(transform, stats.speed);
         m_movement.Start();
         m_movement.PathComplete += MovementOnPathComplete;
+        PlayAnimation(AnimationType.Move);
         IsInitialized = true;
     }
 
-    private void MovementOnPathComplete()
-    {
-        m_movement.Start();
-    }
+    private void MovementOnPathComplete() => m_movement.Start();
 
-    private void OnMouseDown()
-    {
-        PlayerData.Instance.OnClickPrey(this);
-    }
+    private void OnMouseDown() => PlayerData.Instance.OnClickPrey(this);
 
     public void PlayAnimation(AnimationType type) => m_animationHandler.Play(type);
     public void StopAnimation() => m_animationHandler.Stop();
@@ -54,20 +44,19 @@ public abstract class UnitBase : MonoBehaviourWithLogger
 
     public virtual void TakeDamage(int dmg)
     {
-        m_stats.Health -= dmg;
-        Log($"Damage: {dmg}. Health left: {m_stats.Health}");
+        m_stats.health -= dmg;
+        Log($"Damage: {dmg}. Health left: {m_stats.health}");
         m_animationHandler.PlayTemporary(AnimationType.Hurt, 1f);
         m_animationHandler.ChangeColorTemporary(Color.white, Color.red, 0.5f);
 
-        if (m_stats.Health <= 0 && !IsDead)
+        if (m_stats.health <= 0 && !IsDead)
         {
             IsDead = true;
             Dead?.Invoke(this);
         }
     }
 
-    public void SetVisible(bool visible)
-    {
-        m_animationHandler.SetVisible(visible ? 1 : 0.1f);
-    }
+    public void SetVisible(bool visible) => m_animationHandler.SetVisible(visible ? 1 : 0.1f);
+
+    private void OnDestroy() => m_animationHandler.Disable();
 }

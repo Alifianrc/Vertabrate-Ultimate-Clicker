@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerData : StaticInstance<PlayerData>
 {
@@ -19,8 +21,15 @@ public class PlayerData : StaticInstance<PlayerData>
     private UnitBase m_selectedPrey;
 
     private int m_exp;
-    private int m_levelUpRequirement;
+    private int m_levelUpRequirement = 3;
     private int m_level;
+
+    public static event Action LevelUp;
+
+    private void Start()
+    {
+        RefreshUI();
+    }
 
     public void OnClickPrey(UnitBase unit)
     {
@@ -44,8 +53,29 @@ public class PlayerData : StaticInstance<PlayerData>
     {
         PreyManager.Instance.SetAllVisibility(true);
         CameraMovement.Instance.ZoomOut();
+        AddExp(unit.Stats.exp);
         m_selectedPrey = null;
         Destroy(unit.gameObject);
+    }
+
+    private void AddExp(int exp)
+    {
+        var initialLevel = m_level;
+        m_exp += exp;
+        while (m_exp >= m_levelUpRequirement)
+        {
+            m_exp -= m_levelUpRequirement;
+            m_level++;
+            m_levelUpRequirement = m_level * 3 + 3;
+        }
+        if(m_level != initialLevel) LevelUp?.Invoke();
+        RefreshUI();
+    }
+
+    private void RefreshUI()
+    {
+        ExpGroup.Instance.SetExp(m_exp, m_levelUpRequirement);
+        ExpGroup.Instance.SetLevel(m_level);
     }
 
     private static float Crit(float chance, float multiplier)

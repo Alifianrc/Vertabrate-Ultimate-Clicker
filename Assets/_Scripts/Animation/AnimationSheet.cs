@@ -6,10 +6,20 @@ public struct AnimationSheet : IEquatable<AnimationSheet>
 {
     public AnimationType type;
     [SerializeField] private ScriptableSpriteSheet spriteSheetData;
-    private SpriteSheet m_spriteSheet;
+    private SpriteSheet m_sheet;
 
-    public SpriteSheet Sheet => m_spriteSheet ??= new(spriteSheetData);
+    public SpriteSheet Sheet
+    {
+        get
+        {
+            if(m_sheet == null || m_sheet.Data == null) NewSpriteSheet();
+            return m_sheet;
+        }
+        private set => m_sheet = value;
+    }
+
     public ScriptableSpriteSheet SheetData => spriteSheetData;
+    public void NewSpriteSheet() => Sheet = new(spriteSheetData);
 
     public static bool operator ==(AnimationSheet a, AnimationSheet b)
     {

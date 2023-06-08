@@ -48,8 +48,8 @@ public class PreyManager : StaticInstance<PreyManager>
 
         // Apply possible modifications here such as potion boosts, team synergies, etc
         var stats = data.BaseStats;
-        stats.Health += 20;
-        stats.EscapeTime += 5;
+        stats.health += 20;
+        stats.escapeTime += 5;
 
         spawned.Init(stats, data.Animations);
         

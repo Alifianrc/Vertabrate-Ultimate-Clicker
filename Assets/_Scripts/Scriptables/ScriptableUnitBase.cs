@@ -37,7 +37,8 @@ public abstract class ScriptableUnitBase : ScriptableObject
 /// </summary>
 [Serializable]
 public struct Stats {
-    public int Health;
-    public int EscapeTime;
-    public float Speed;
+    public int health;
+    public int escapeTime;
+    public float speed;
+    public int exp;
 }
