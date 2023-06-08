@@ -13,7 +13,7 @@ public class UnitMovement
     private Queue<Vector3> m_path;
     private Transform m_transform;
     private float m_speed;
-    private TweenerCore<Vector3, Vector3, VectorOptions> m_tween;
+    private Tween m_tween;
     public bool IsMoving { get; private set; }
     public event Action PathComplete;
 
@@ -23,12 +23,12 @@ public class UnitMovement
         m_path = new();
         m_transform = owner;
         m_speed = speed;
+        GeneratePaths();
         MonoHelper.Instance.Run(Move());
     }
 
-    public IEnumerator Move()
+    private IEnumerator Move()
     {
-        GeneratePaths();
         while (m_path.Count > 0)
         {
             var endValue = m_path.Dequeue();
@@ -41,6 +41,7 @@ public class UnitMovement
 
     public void Start()
     {
+        if(m_path.Count <= 0) GeneratePaths();
         IsMoving = true;
     }
 

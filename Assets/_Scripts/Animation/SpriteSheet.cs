@@ -38,7 +38,7 @@ public class SpriteSheet : ClassWithLogger//, IEquatable<SpriteSheet>
         //Log("start seek" + spriteIndex + IsIndexInValid(spriteIndex));
         if (Data.IsIndexInValid(spriteIndex))
         {
-            throw new IndexOutOfRangeException("spriteIndex doesn't exist! filename:" + Data.name);
+            throw new IndexOutOfRangeException($"spriteIndex {spriteIndex} doesn't exist! filename: {Data.name}");
             // LogError("spriteIndex doesn't exist");
             // return;
         }

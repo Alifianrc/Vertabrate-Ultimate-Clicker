@@ -16,6 +16,11 @@ public class PreyManager : StaticInstance<PreyManager>
     [SerializeField] private int m_preyCount;
     private List<UnitBase> spawnedUnits = new();
     public Bounds SpawnArea => m_spawnArea;
+
+    public void SetAllVisibility(bool visible)
+    {
+        foreach (var unit in spawnedUnits) unit.SetVisible(visible);
+    }
     
     public void PopulateArea() {
         for (int i = 0; i < m_preyCount; i++)

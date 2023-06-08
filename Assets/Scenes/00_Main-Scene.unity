@@ -2182,9 +2182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
-  zoomStep: 0
-  minCamSize: 0
-  maxCamSize: 0
+  zoomStep: 10
+  minCamSize: 5
+  maxCamSize: 15
+  zoomDuration: 0.5
 --- !u!1 &974157517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4485884863768437634, guid: cb5500ff242eef94b97273e75386b919, type: 3}
@@ -2976,9 +2977,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb4f9fce9f044847bc47ea6ee3e51e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 0
-  critChance: 0
-  critDamage: 0
+  attack: 1
+  critChance: 5
+  critMultiplier: 5
   upgradeLevel: 1
 --- !u!1 &1248852308
 GameObject:
@@ -6086,7 +6087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864070564631, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2478834.8
+      value: 2503235.8
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864122605855, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6170,7 +6171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864264810939, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2478676.5
+      value: 2503077.5
       objectReference: {fileID: 0}
     - target: {fileID: 4485884864279847859, guid: cb5500ff242eef94b97273e75386b919, type: 3}
       propertyPath: m_IsActive

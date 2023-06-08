@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Timers;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using NoSuchStudio.Common;
 using UnityEngine;
 
@@ -8,17 +11,27 @@ using UnityEngine;
 internal class UnitAnimationHandler : ClassWithLogger
 {
     private List<AnimationSheet> m_animations;
-
     [SerializeField] private SpriteSheet m_selectedAnimation;
-    
     private readonly SpriteRenderer m_spriteRenderer;
-
     [SerializeField] private Sprite m_currentSprite;
+    private Tween colorTween;
 
     public UnitAnimationHandler(List<AnimationSheet> animations, SpriteRenderer renderer)
     {
         m_animations = animations;
         m_spriteRenderer = renderer;
+    }
+
+    public void ChangeColorTemporary(Color initialColor, Color newColor, float time)
+    {
+        colorTween?.Kill();
+        m_spriteRenderer.color = newColor;
+        colorTween = m_spriteRenderer.DOColor(initialColor, time);
+    }
+
+    public void SetVisible(float alpha)
+    {
+        m_spriteRenderer.DOFade(alpha, 1);
     }
         
     public void Play(AnimationType type, bool fromBeginning = false)

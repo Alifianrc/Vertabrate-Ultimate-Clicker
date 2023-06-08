@@ -18,6 +18,9 @@ public class CameraMovement : StaticInstance<CameraMovement>
     void Update()
     {
         PanCamera();
+        
+        if(Input.GetKeyDown(KeyCode.A)) ZoomIn();
+        if(Input.GetKeyDown(KeyCode.S)) ZoomOut();
     }
 
     private void PanCamera()
@@ -30,6 +33,11 @@ public class CameraMovement : StaticInstance<CameraMovement>
             Vector3 difference = m_dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
             cam.transform.position = ClampCamera(cam.transform.position + difference);
         }
+    }
+
+    public void PanCamera(Vector3 targetPos)
+    {
+        cam.transform.DOMove(targetPos, 1f);
     }
 
     [ContextMenu(nameof(ZoomIn))]
@@ -46,8 +54,8 @@ public class CameraMovement : StaticInstance<CameraMovement>
 
     private void Zoom(float newSize)
     {
-        cam.DOOrthoSize(Mathf.Clamp(newSize, minCamSize, maxCamSize), zoomDuration);
-        cam.transform.position = ClampCamera(cam.transform.position);
+        cam.DOOrthoSize(Mathf.Clamp(newSize, minCamSize, maxCamSize), zoomDuration)
+            .OnUpdate(() => cam.transform.position = ClampCamera(cam.transform.position));
     }
 
     private Vector3 ClampCamera(Vector3 targetPosition)
